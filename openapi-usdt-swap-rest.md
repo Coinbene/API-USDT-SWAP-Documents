@@ -1,5 +1,5 @@
 # coinbene-swap-rest 合约openapi rest接口说明
-# [English](https://github.com/Coinbene/API-SWAP-Documents/blob/master/openapi-swap-rest-en.md)
+# [English](https://github.com/Coinbene/API-SWAP-Documents/blob/master/openapi-usdt-swap-rest-en.md)
 # [WebSocket](https://github.com/Coinbene/API-SWAP-Documents/blob/master/openapi-swap-websocket.md)
 * [coinbene-swap-rest行情与交易接口](#coinbene-swap-rest行情与交易接口)
   * [基本信息](#基本信息)
@@ -68,7 +68,7 @@ ACCESS-SIGN的值生成规则：
 - 按照timestamp + method + requestPath + body字符串（+表示字符串连接），以及secret，使用HMAC SHA256方法加密，最后把加密串的字节数组转成字符串返回。
 - 其中，timestamp的值与ACCESS-TIMESTAMP请求头相同，必须是UTC时区Unix时间戳的十进制秒数或ISO8601标准的时间格式，精确到毫秒。
 - Method是请求方法，字母全部大写：GET/POST
-- requestPath是请求接口路径，例如：/api/swap/v2/market/orderBook
+- requestPath是请求接口路径，例如：/api/usdt/v2/market/orderBook
 - body是指请求主体的字符串。GET请求没有body信息可省略；POST请求有body信息JSON串，例如{"symbol":"BTCUSDT","order_id":"7440"}
 - secret为用户申请API时所生成的
 - 任何时候都请不要把secret透露给其他人或传输到服务器端
@@ -84,7 +84,7 @@ preHash String：2019-03-08T10:59:25.789ZGET/account/list?symbol=BTCUSDT
 
 
 ```
-Url: http://域名/api/swap/v2/market/tickers
+Url: http://域名/api/usdt/v2/market/tickers
 Method: GET
 Headers: 
 	Accept: application/json
@@ -94,12 +94,12 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:14:16.161ZGET/api/swap/v2/market/tickers
+preHash: 2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 ```
 
 
 ```
-Url: http://域名/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://域名/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -109,7 +109,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 ```
 
 
@@ -120,7 +120,7 @@ preHash String：2019-03-08T10:59:25.789ZPOST/account/add{"symbol":"BTCUSDT","qu
 
 
 ```
-Url: http://域名/api/swap/v2/order/place
+Url: http://域名/api/usdt/v2/order/place
 Method: POST
 Headers: 
 	Accept: application/json
@@ -130,13 +130,13 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/swap/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","clientId":"1558496033481"}
 ```
 - 签名算法验证：
 
 
 ```
-源串：2019-05-25T03:20:30.362ZGET/api/swap/v2/account/info
+源串：2019-05-25T03:20:30.362ZGET/api/usdt/v2/account/info
 secret：9daf13ebd76c4f358fc885ca6ede5e27
 生成sign串：a02a6428bb44ad338d020c55acee9dd40bbcb3d96cbe3e48dd6185e51e232aa2
 
@@ -221,7 +221,7 @@ def sign(message, secret):
 
 class TestUtil(unittest.TestCase):
     def test_sign(self):
-        sn = sign("2019-05-25T03:20:30.362ZGET/api/swap/v2/account/info", "9daf13ebd76c4f358fc885ca6ede5e27")
+        sn = sign("2019-05-25T03:20:30.362ZGET/api/usdt/v2/account/info", "9daf13ebd76c4f358fc885ca6ede5e27")
         self.assertEqual(sn, "a02a6428bb44ad338d020c55acee9dd40bbcb3d96cbe3e48dd6185e51e232aa2")
 
 
@@ -254,7 +254,7 @@ fun signForContractOpenApi(method: String, requestUrl: String, requestBody: Stri
 ```
 获取合约的深度列表
 限速规则：20次/2秒
-HTTP GET /api/swap/v2/market/orderBook?symbol=BTCUSDT
+HTTP GET /api/usdt/v2/market/orderBook?symbol=BTCUSDT
 ```
 
 请求参数：
@@ -277,14 +277,14 @@ time      | string |  时间戳，国际时间
 
 ```
 Request:
-Url: http://域名/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://域名/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 
 
 Response:
@@ -355,7 +355,7 @@ Response:
 ```
 获取平台全部合约的最新成交价、买一价、卖一价和24交易量
 限速规则：20次/2秒
-HTTP GET /api/swap/v2/market/tickers
+HTTP GET /api/usdt/v2/market/tickers
 ```
 请求参数：无
 
@@ -379,14 +379,14 @@ time      | string |  时间戳，国际时间
 
 ```
 Request:
-Url: http://域名/api/swap/v2/market/tickers
+Url: http://域名/api/usdt/v2/market/tickers
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:14:16.161ZGET/api/swap/v2/market/tickers
+preHash: 2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 
 Response:
 {
@@ -426,7 +426,7 @@ Response:
 ```
 获取合约K线数据。K线数据最多可获取2000条。
 限速规则：20次/2秒
-HTTP GET /api/swap/v2/market/klines
+HTTP GET /api/usdt/v2/market/klines
 ```
 请求参数：
 
@@ -463,14 +463,14 @@ buyTurnover   | string | 主买额
 
 ```
 Request:
-Url: http://域名/api/swap/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+Url: http://域名/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:16:20.521ZGET/api/swap/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+preHash: 2019-05-21T11:16:20.521ZGET/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
 
 Response:
 格式说明:[time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
@@ -518,7 +518,7 @@ Response:
 ```
 获取合约的最新成交信息
 限速规则：20次/2秒
-HTTP GET /api/swap/v2/market/trades
+HTTP GET /api/usdt/v2/market/trades
 ```
 请求参数：
 
@@ -539,14 +539,14 @@ time   | string | 成交时间
 
 ```
 Request:
-Url: http://域名/api/swap/v2/market/trades?symbol=BTCUSDT&limit=1
+Url: http://域名/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=1
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:19:52.303ZGET/api/swap/v2/market/trades?symbol=BTCUSDT&limit=10
+preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=10
 
 Response:
 {
@@ -573,7 +573,7 @@ Response:
 ```
 获取当前合约最新资金费率
 限速规则：6次/1秒
-HTTP GET /api/swap/v2/market/fundingRate
+HTTP GET /api/usdt/v2/market/fundingRate
 ```
 请求参数：
 
@@ -586,14 +586,14 @@ symbol      | string | 是 | 合约名称，如BTCUSDT
 
 ```
 Request:
-Url: http://域名/api/swap/v2/market/fundingRate?symbol=BTCUSDT
+Url: http://域名/api/usdt/v2/market/fundingRate?symbol=BTCUSDT
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:19:52.303ZGET/api/swap/v2/market/fundingRate?symbol=BTCUSDT
+preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/fundingRate?symbol=BTCUSDT
 
 Response:
 {
@@ -607,7 +607,7 @@ Response:
 ```
 获取用户币种合约的账户信息
 限速次数：10次/2秒
-HTTP GET /api/swap/v2/account/info
+HTTP GET /api/usdt/v2/account/info
 ```
 
 请求参数
@@ -626,7 +626,7 @@ unrealisedPnl   | string | 未实现盈亏
 
 ```
 Request:
-Url: http://域名/api/swap/v2/account/info
+Url: http://域名/api/usdt/v2/account/info
 Method: GET
 Headers: 
 	Accept: application/json
@@ -636,7 +636,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:23:34.403ZGET/api/swap/v2/account/info
+preHash: 2019-05-21T11:23:34.403ZGET/api/usdt/v2/account/info
 
 Response:
 {
@@ -657,7 +657,7 @@ Response:
 ```
 获取所有合约的持仓信息
 限速规则：10次/2秒
-HTTP GET /api/swap/v2/position/list
+HTTP GET /api/usdt/v2/position/list
 ```
 请求参数：
 
@@ -688,7 +688,7 @@ unrealisedPnl   | string | 未实现盈亏
 
 ```
 Request:
-Url: http://域名/api/swap/v2/position/list
+Url: http://域名/api/usdt/v2/position/list
 Method: GET
 Headers: 
 	Accept: application/json
@@ -698,7 +698,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:20:36.021ZGET/api/swap/v2/position/list
+preHash: 2019-05-22T03:20:36.021ZGET/api/usdt/v2/position/list
 
 Response:
 {
@@ -747,7 +747,7 @@ Response:
 ```
 按用户输入进行下单操作
 限速规则：20次/2秒
-HTTP POST/api/swap/v2/order/place
+HTTP POST/api/usdt/v2/order/place
 ```
 请求参数：
 
@@ -779,7 +779,7 @@ clientId   | string | 用户请求的clientId
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/place
+Url: http://域名/api/usdt/v2/order/place
 Method: POST
 Headers: 
 	Accept: application/json
@@ -789,7 +789,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/swap/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
 
 Response:
 {
@@ -806,7 +806,7 @@ Response:
 ```
 按用户输入进行撤单操作
 限速规则：20次/2秒
-HTTP POST/api/swap/v2/order/cancel
+HTTP POST/api/usdt/v2/order/cancel
 ```
 请求参数：
 
@@ -822,7 +822,7 @@ data   | string | 撤销的订单Id
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/cancel
+Url: http://域名/api/usdt/v2/order/cancel
 Method: POST
 Headers: 
 	Accept: application/json
@@ -832,7 +832,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"orderId":"580719990266232832"}
-preHash: 2019-05-22T03:36:33.251ZPOST/api/swap/v2/order/cancel{"orderId":"580719990266232832"}
+preHash: 2019-05-22T03:36:33.251ZPOST/api/usdt/v2/order/cancel{"orderId":"580719990266232832"}
 
 Response:
 {
@@ -846,7 +846,7 @@ Response:
 ```
 按用户请求进行订单列表查询，
 限速规则：5次/2秒
-HTTP GET/api/swap/v2/order/openOrders
+HTTP GET/api/usdt/v2/order/openOrders
 ```
 请求参数：
 
@@ -884,7 +884,7 @@ status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完�
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+Url: http://域名/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
 Method: GET
 Headers: 
 	Accept: application/json
@@ -894,7 +894,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/swap/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
 
 Response:
 {
@@ -940,7 +940,7 @@ Response:
 ```
 按用户请求进行订单列表查询，
 限速规则：5次/2秒
-HTTP GET/api/swap/v2/order/openOrdersByPage
+HTTP GET/api/usdt/v2/order/openOrdersByPage
 ```
 请求参数：
 
@@ -969,7 +969,7 @@ status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完�
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/openOrdersByPage
+Url: http://域名/api/usdt/v2/order/openOrdersByPage
 Method: GET
 Headers: 
 	Accept: application/json
@@ -979,7 +979,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/swap/v2/order/openOrdersByPage
+preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrdersByPage
 
 Response:
 {
@@ -1024,7 +1024,7 @@ Response:
 ```
 通过订单ID获取单个订单信息
 限速规则：10次/2秒
-HTTP GET/api/swap/v2/order/info
+HTTP GET/api/usdt/v2/order/info
 ```
 请求参数：
 
@@ -1053,7 +1053,7 @@ status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完�
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/info?orderId=580721369818955776
+Url: http://域名/api/usdt/v2/order/info?orderId=580721369818955776
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1063,7 +1063,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:47:41.653ZGET/api/swap/v2/order/info?orderId=580721369818955776
+preHash: 2019-05-22T03:47:41.653ZGET/api/usdt/v2/order/info?orderId=580721369818955776
 
 Response:
 {
@@ -1091,7 +1091,7 @@ Response:
 ```
 按用户输入进行查询操作
 限速规则：5次/2秒
-HTTP GET/api/swap/v2/order/closedOrders
+HTTP GET/api/usdt/v2/order/closedOrders
 ```
 
 请求参数：
@@ -1127,7 +1127,7 @@ status   | string | 订单状态(filled:完成成交,canceled:完全撤单,parti
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+Url: http://域名/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1137,7 +1137,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T04:03:41.607ZGET/api/swap/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
 
 Response:
 {
@@ -1182,7 +1182,7 @@ Response:
 ```
 按用户输入进行查询操作
 限速规则：5次/2秒
-HTTP GET/api/swap/v2/order/closedOrdersByPage
+HTTP GET/api/usdt/v2/order/closedOrdersByPage
 ```
 
 请求参数：
@@ -1216,7 +1216,7 @@ status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完�
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/closedOrdersByPage?symbol=&beginTime=1560658928499
+Url: http://域名/api/usdt/v2/order/closedOrdersByPage?symbol=&beginTime=1560658928499
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1226,7 +1226,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-06-26T04:22:08.518ZGET/api/swap/v2/order/closedOrdersByPage?symbol=&beginTime=1560658928499
+preHash: 2019-06-26T04:22:08.518ZGET/api/usdt/v2/order/closedOrdersByPage?symbol=&beginTime=1560658928499
 
 Response:
 {
@@ -1271,7 +1271,7 @@ Response:
 ```
 按用户输入进行撤单操作
 限速规则：5次/2秒
-HTTP POST/api/swap/v2/order/batchCancel
+HTTP POST/api/usdt/v2/order/batchCancel
 ```
 请求参数：
 
@@ -1288,7 +1288,7 @@ orderId   | string | 撤销的订单Id
 
 ```
 Request:
-Url: http://域名/api/swap/v2/order/batchCancel
+Url: http://域名/api/usdt/v2/order/batchCancel
 Method: POST
 Headers: 
 	Accept: application/json
@@ -1298,7 +1298,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"orderIds":["578639816552972288","578639902896914432"]}
-preHash: 2019-05-22T04:10:50.176ZPOST/api/swap/v2/order/batchCancel{"orderIds":["578639816552972288","578639902896914432"]}
+preHash: 2019-05-22T04:10:50.176ZPOST/api/usdt/v2/order/batchCancel{"orderIds":["578639816552972288","578639902896914432"]}
 
 Response:		
 {
@@ -1322,7 +1322,7 @@ Response:
 ```
 按用户输入进行撤单操作
 限速规则：10次/2秒
-HTTP GET/api/swap/v2/order/fills
+HTTP GET/api/usdt/v2/order/fills
 ```
 
 请求参数：
@@ -1353,7 +1353,7 @@ status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完�
 
 ```
 Request:
-Url: http://172.20.20.156:9320/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+Url: http://172.20.20.156:9320/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1363,7 +1363,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-06-09T04:14:18.213ZGET/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+preHash: 2019-06-09T04:14:18.213ZGET/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
 
 Response:		
 {
@@ -1408,7 +1408,7 @@ Response:
 ```
 按用户输入进行撤单操作
 限速规则：10次/2秒
-HTTP GET/api/swap/v2/position/feeRate
+HTTP GET/api/usdt/v2/position/feeRate
 ```
 
 请求参数：
@@ -1433,7 +1433,7 @@ leverage   | string | 杠杆倍数
 
 ```
 Request:
-Url: http://172.20.20.156:9320/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+Url: http://172.20.20.156:9320/api/usdt/v2/position/feeRate?pageNum=1&pageSize=2
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1443,7 +1443,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-06-09T04:22:06.355ZGET/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+preHash: 2019-06-09T04:22:06.355ZGET/api/usdt/v2/position/feeRate?pageNum=1&pageSize=2
 
 Response:		
 {
