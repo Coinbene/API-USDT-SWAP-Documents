@@ -1,5 +1,5 @@
 # coinbene-swap-rest-contract-openapi-rest-interface-description)
-[中文版本](https://github.com/Coinbene/API-SWAP-Documents/blob/master/openapi-swap-rest.md)
+[中文版本](https://github.com/Coinbene/API-USDT-SWAP-Documents/blob/master/openapi-usdt-swap-rest.md)
 * [Basic Information](#basic-information)
 * [restriction of visit](#restriction-of-visit)
 * [Interface Type](#interface-type)
@@ -63,7 +63,7 @@ ACCESS-SIGN value generation rules:
 - According to timestamp + method + requestPath + body string (+ indicates string concatenation), and secret, use HMAC SHA256 method to encrypt, and finally convert the byte array of the encrypted string into a string to return.
 - The timestamp value is the same as the ACCESS-TIMESTAMP request header, and must be the decimal time of the UTC time zone Unix timestamp or the time format of the ISO8601 standard, which is accurate to the millisecond.
 - Method is the request method, all letters are capitalized: GET/POST
-- requestPath is the request interface path, for example: /api/swap/v2/market/orderBook
+- requestPath is the request interface path, for example: /api/usdt/v2/market/orderBook
 - Body is the string of the request body. The GET request has no body information to omit; the POST request has a body information JSON string, such as {"symbol": "BTCUSDT", "order_id": "7440"}
 - The secret is generated when the user applies for the API
 - **Do not disclose secret to others or transfer them to the server at any time**
@@ -72,14 +72,14 @@ Sample interface request:
 - Two cases of GET protocol interface:
 ```
 1. Without parameters:
-preHash String：2019-05-21T11:14:16.161ZGET/api/swap/v2/market/tickers
+preHash String：2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 2. With parameters:
-preHash String：2019-05-21T11:10:28.464ZGET/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash String：2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 ```
 
 
 ```
-Url: http://domain/api/swap/v2/market/tickers
+Url: http://domain/api/usdt/v2/market/tickers
 Method: GET
 Headers: 
 	Accept: application/json
@@ -89,12 +89,12 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:14:16.161ZGET/api/swap/v2/market/tickers
+preHash: 2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 ```
 
 
 ```
-Url: http://domain/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://domain/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -104,7 +104,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 ```
 
 
@@ -115,7 +115,7 @@ preHash String：2019-03-08T10:59:25.789ZPOST/account/add{"symbol":"BTCUSDT","qu
 
 
 ```
-Url: http://domain/api/swap/v2/order/place
+Url: http://domain/api/usdt/v2/order/place
 Method: POST
 Headers: 
 	Accept: application/json
@@ -125,13 +125,13 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/swap/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
 ```
 - Signature algorithm verification:
 
 
 ```
-Source string: 2019-05-25T03:20:30.362ZGET/api/swap/v2/account/info
+Source string: 2019-05-25T03:20:30.362ZGET/api/usdt/v2/account/info
 secret：9daf13ebd76c4f358fc885ca6ede5e27
 Generate a sign string: a02a6428bb44ad338d020c55acee9dd40bbcb3d96cbe3e48dd6185e51e232aa2
 
@@ -212,7 +212,7 @@ def sign(message, secret):
 
 class TestUtil(unittest.TestCase):
     def test_sign(self):
-        sn = sign("2019-05-25T03:20:30.362ZGET/api/swap/v2/account/info", "9daf13ebd76c4f358fc885ca6ede5e27")
+        sn = sign("2019-05-25T03:20:30.362ZGET/api/usdt/v2/account/info", "9daf13ebd76c4f358fc885ca6ede5e27")
         self.assertEqual(sn, "a02a6428bb44ad338d020c55acee9dd40bbcb3d96cbe3e48dd6185e51e232aa2")
 
 
@@ -224,7 +224,7 @@ class TestUtil(unittest.TestCase):
 ```
 Get a deep list of contracts
 Speed limit rule: 20 times per 2 seconds
-HTTP GET /api/swap/v2/market/orderBook?symbol=BTCUSDT
+HTTP GET /api/usdt/v2/market/orderBook?symbol=BTCUSDT
 ```
 
 Request parameters:
@@ -247,14 +247,14 @@ time      | string |  timestamp International time
 
 ```
 Request:
-Url: http://domain/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://domain/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/swap/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
 
 
 Response:
@@ -325,7 +325,7 @@ Response:
 ```
 Get the latest transaction price, buy one price, sell one price and 24 trading volume of all the contracts of the platform.
 Speed limit rule: 20 times per 2 seconds
-HTTP GET /api/swap/v2/market/tickers
+HTTP GET /api/usdt/v2/market/tickers
 ```
 Request parameters: none
 
@@ -348,14 +348,14 @@ time      | string |  timestamp International time
 
 ```
 Request:
-Url: http://domain/api/swap/v2/market/tickers
+Url: http://domain/api/usdt/v2/market/tickers
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:14:16.161ZGET/api/swap/v2/market/tickers
+preHash: 2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 
 Response:
 {
@@ -395,7 +395,7 @@ Response:
 ```
 Obtain contract K line data. K-line data can be obtained up to 2000.
 Speed ​​limit rule: 20 times per 2 seconds
-HTTP GET /api/swap/v2/market/klines
+HTTP GET /api/usdt/v2/market/klines
 ```
 Request parameters:
 
@@ -433,14 +433,14 @@ buyTurnover | string | main purchase amount
 
 ```
 Request:
-Url: http://domain/api/swap/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+Url: http://domain/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:16:20.521ZGET/api/swap/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+preHash: 2019-05-21T11:16:20.521ZGET/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
 
 Response:
 Format description:[time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
@@ -488,7 +488,7 @@ Format description:[time,open,close,high,low,volume,turnover,buyVolume,buyTurnov
 ```
 Get the latest filled orders information for the contract
 Speed limit rule: 20 times per 2 seconds
-HTTP GET /api/swap/v2/market/trades
+HTTP GET /api/usdt/v2/market/trades
 ```
 Request parameters:
 
@@ -511,14 +511,14 @@ time | string | closing time
 
 ```
 Request:
-Url: http://domain/api/swap/v2/market/trades?symbol=BTCUSDT&limit=1
+Url: http://domain/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=1
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:19:52.303ZGET/api/swap/v2/market/trades?symbol=BTCUSDT&limit=10
+preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=10
 
 Response:
 {
@@ -545,7 +545,7 @@ Response:
 ```
 Get account information for user currency contracts
 Speed limit: 10 times per 2 seconds
-HTTP GET /api/swap/v2/account/info
+HTTP GET /api/usdt/v2/account/info
 ```
 
 Request parameter
@@ -564,7 +564,7 @@ unrealisedPnl | string | Unrealized profit and loss
 
 ```
 Request:
-Url: http://domain/api/swap/v2/account/info
+Url: http://domain/api/usdt/v2/account/info
 Method: GET
 Headers: 
 	Accept: application/json
@@ -574,7 +574,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:23:34.403ZGET/api/swap/v2/account/info
+preHash: 2019-05-21T11:23:34.403ZGET/api/usdt/v2/account/info
 
 Response:
 {
@@ -595,7 +595,7 @@ Response:
 ```
 Get position information for all contracts
 Speed ​​limit rule: 10 times per 2 seconds
-HTTP GET /api/swap/v2/position/list
+HTTP GET /api/usdt/v2/position/list
 ```
 Request parameters:
 
@@ -626,7 +626,7 @@ unrealisedPnl | string | Unrealized profit and loss
 
 ```
 Request:
-Url: http://domain/api/swap/v2/position/list
+Url: http://domain/api/usdt/v2/position/list
 Method: GET
 Headers: 
 	Accept: application/json
@@ -636,7 +636,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:20:36.021ZGET/api/swap/v2/position/list
+preHash: 2019-05-22T03:20:36.021ZGET/api/usdt/v2/position/list
 
 Response:
 {
@@ -685,7 +685,7 @@ Response:
 ```
 Place an order,Trading only supports limit orders.
 Speed limit rule: 20 times per 2 seconds
-HTTP POST/api/swap/v2/order/place
+HTTP POST/api/usdt/v2/order/place
 ```
 Request parameters:
 
@@ -718,7 +718,7 @@ clientId | string | clientId requested by client
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/place
+Url: http://domain/api/usdt/v2/order/place
 Method: POST
 Headers: 
 	Accept: application/json
@@ -728,7 +728,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/swap/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
 
 Response:
 {
@@ -745,7 +745,7 @@ Response:
 ```
 Cancelling an unfilled order
 Speed limit rule: 20 times per 2 seconds
-HTTP POST/api/swap/v2/order/cancel
+HTTP POST/api/usdt/v2/order/cancel
 ```
 Request parameters:
 
@@ -761,7 +761,7 @@ data | string | Undo Order Id
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/cancel
+Url: http://domain/api/usdt/v2/order/cancel
 Method: POST
 Headers: 
 	Accept: application/json
@@ -771,7 +771,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"orderId":"580719990266232832"}
-preHash: 2019-05-22T03:36:33.251ZPOST/api/swap/v2/order/cancel{"orderId":"580719990266232832"}
+preHash: 2019-05-22T03:36:33.251ZPOST/api/usdt/v2/order/cancel{"orderId":"580719990266232832"}
 
 Response:
 {
@@ -785,7 +785,7 @@ Response:
 ```
 Order list query by user request,
 Speed limit rule: 5 times per 2 seconds
-HTTP GET/api/swap/v2/order/openOrders
+HTTP GET/api/usdt/v2/order/openOrders
 ```
 Request parameters:
 
@@ -823,7 +823,7 @@ status | string | Order Status(new,filled,canceled,partiallyCanceled）
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+Url: http://domain/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
 Method: GET
 Headers: 
 	Accept: application/json
@@ -833,7 +833,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/swap/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
 
 Response:
 {
@@ -878,7 +878,7 @@ Response:
 ```
 Order list query by user request,
 Speed limit rule: 5 times per 2 seconds
-HTTP GET/api/swap/v2/order/openOrdersByPage
+HTTP GET/api/usdt/v2/order/openOrdersByPage
 ```
 Request parameters:
 
@@ -908,7 +908,7 @@ status | string | Order Status(new,filled,canceled,partiallyCanceled）
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/openOrdersByPage
+Url: http://domain/api/usdt/v2/order/openOrdersByPage
 Method: GET
 Headers: 
 	Accept: application/json
@@ -918,7 +918,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/swap/v2/order/openOrdersByPage
+preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrdersByPage
 
 Response:
 {
@@ -963,7 +963,7 @@ Response:
 ```
 Get  order information by order_id
 Speed limit rule: 10 times per 2 seconds
-HTTP GET/api/swap/v2/order/info
+HTTP GET/api/usdt/v2/order/info
 ```
 Request parameters:
 
@@ -992,7 +992,7 @@ status | string | Order Status(new,filled,canceled,partiallyFilled）
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/info?orderId=580721369818955776
+Url: http://domain/api/usdt/v2/order/info?orderId=580721369818955776
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1002,7 +1002,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:47:41.653ZGET/api/swap/v2/order/info?orderId=580721369818955776
+preHash: 2019-05-22T03:47:41.653ZGET/api/usdt/v2/order/info?orderId=580721369818955776
 
 Response:
 {
@@ -1030,7 +1030,7 @@ Response:
 ```
 Query by user input
 Speed ​​limit rule: 5 times per 2 seconds
-HTTP GET/api/swap/v2/order/closedOrders
+HTTP GET/api/usdt/v2/order/closedOrders
 ```
 
 Request parameters:
@@ -1066,7 +1066,7 @@ status | string | Order Status(filled,canceled,partiallyCanceled）
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+Url: http://domain/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1076,7 +1076,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T04:03:41.607ZGET/api/swap/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
 
 Response:
 {
@@ -1121,7 +1121,7 @@ Response:
 ```
 Query by user input
 Speed limit rule: 5 times per 2 seconds
-HTTP GET/api/swap/v2/order/closedOrdersByPage
+HTTP GET/api/usdt/v2/order/closedOrdersByPage
 ```
 
 Request parameters:
@@ -1155,7 +1155,7 @@ status | string | Order Status(new,filled,canceled,partiallyCanceled）
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/closedOrdersByPage
+Url: http://domain/api/usdt/v2/order/closedOrdersByPage
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1165,7 +1165,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T04:03:41.607ZGET/api/swap/v2/order/closedOrdersByPage
+preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrdersByPage
 
 Response:
 {
@@ -1210,7 +1210,7 @@ Response:
 ```
 Cancel multiple Orders
 Speed limit rule: 5 times per 2 seconds
-HTTP POST/api/swap/v2/order/batchCancel
+HTTP POST/api/usdt/v2/order/batchCancel
 ```
 Request parameters:
 
@@ -1227,7 +1227,7 @@ orderId | string | Undo Order Id
 
 ```
 Request:
-Url: http://domain/api/swap/v2/order/batchCancel
+Url: http://domain/api/usdt/v2/order/batchCancel
 Method: POST
 Headers: 
 	Accept: application/json
@@ -1237,7 +1237,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: {"orderIds":["578639816552972288","578639902896914432"]}
-preHash: 2019-05-22T04:10:50.176ZPOST/api/swap/v2/order/batchCancel{"orderIds":["578639816552972288","578639902896914432"]}
+preHash: 2019-05-22T04:10:50.176ZPOST/api/usdt/v2/order/batchCancel{"orderIds":["578639816552972288","578639902896914432"]}
 
 Response:		
 {
@@ -1262,7 +1262,7 @@ Response:
 ```
 Cancel the order by user input
 Speed limit rule: 10 times per 2 seconds
-HTTP GET/api/swap/v2/order/fills
+HTTP GET/api/usdt/v2/order/fills
 ```
 Request parameters:
 
@@ -1292,7 +1292,7 @@ Status | string | Order status (new: pending order, filled: completed transactio
 
 ```
 Request:
-Url: http://172.20.20.156:9320/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+Url: http://172.20.20.156:9320/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
 Method: GET
 Headers:
 Accept: application/json
@@ -1302,7 +1302,7 @@ ACCESS-TIMESTAMP: 2019-06-09T04:14:18.213Z
 Content-Type: application/json; charset=UTF-8
 Cookie: locale=zh_CN
 Body:
-preHash: 2019-06-09T04:14:18.213ZGET/api/swap/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+preHash: 2019-06-09T04:14:18.213ZGET/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
 
 Response:
 {
@@ -1347,7 +1347,7 @@ Response:
 ```
 Cancel the order by user input
 Speed limit rule: 10 times per 2 seconds
-HTTP GET/api/swap/v2/position/feeRate
+HTTP GET/api/usdt/v2/position/feeRate
 ```
 Request parameters:
 
@@ -1371,7 +1371,7 @@ Leverage | string | leverage multiple
 
 ```
 Request:
-Url: http://172.20.20.156:9320/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+Url: http://172.20.20.156:9320/api/usdt/v2/position/feeRate?pageNum=1&pageSize=2
 Method: GET
 Headers:
 Accept: application/json
@@ -1381,7 +1381,7 @@ ACCESS-TIMESTAMP: 2019-06-09T04:22:06.355Z
 Content-Type: application/json; charset=UTF-8
 Cookie: locale=zh_CN
 Body:
-preHash: 2019-06-09T04:22:06.355ZGET/api/swap/v2/position/feeRate?pageNum=1&pageSize=2
+preHash: 2019-06-09T04:22:06.355ZGET/api/usdt/v2/position/feeRate?pageNum=1&pageSize=2
 
 Response:
 {
