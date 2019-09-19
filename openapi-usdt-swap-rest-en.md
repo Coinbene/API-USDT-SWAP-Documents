@@ -1,4 +1,4 @@
-# coinbene-swap-rest-contract-openapi-rest-interface-description)
+# coinbene-usdt-rest-contract-openapi-rest-interface-description)
 [中文版本](https://github.com/Coinbene/API-USDT-SWAP-Documents/blob/master/openapi-usdt-swap-rest.md)
 * [Basic Information](#basic-information)
 * [restriction of visit](#restriction-of-visit)
