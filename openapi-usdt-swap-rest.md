@@ -1322,7 +1322,7 @@ Response:
 ```
 按用户输入进行撤单操作
 限速规则：10次/2秒
-HTTP GET/api/swap/v2/order/fills
+HTTP GET/api/usdt/v2/order/fills
 ```
 
 请求参数：
@@ -1361,7 +1361,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-31T06:07:56.724ZGET/api/swap/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
+preHash: 2019-05-31T06:07:56.724ZGET/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
 
 Response:
 {
