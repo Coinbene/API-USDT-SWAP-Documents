@@ -1266,79 +1266,78 @@ HTTP GET/api/usdt/v2/order/fills
 ```
 Request parameters:
 
-Name | Type | Required | Description
----------|---------|---------|---------|
-Symbol | string | yes | contract name, such as BTCUSDT
-orderId | string | yes | orderId
-lastTradeId | string | no | deal Id, page break, fixed 20 per page, default 0 returns the latest 20
+Name | Type | Is it mandatory | Description
+---|---|---|---
+Symbol | string | is the | contract name, such as BTCUSDT
+OrderId | string | is | order ID
+LastTradeId | string | no | transaction id, paging, default value 0, 20 pieces per page size
 
 Return field description:
 
 Name | Type | Description
----------|---------|---------|
-orderId | string | Order Id
-Direction | string | order direction
-Leverage | string | leverage multiple
+---|---|---
 Symbol | string | contract name, such as BTCUSDT
-orderType | string | order type, limit price = limit market price = market
-Quantity | string | Order Quantity (Zhang)
-orderPrice | string | order price
-orderValue | string | order value
+TradeTime | string | transaction time, UTC time
+TradeId | string | transaction ID
+Order Id | string | Order Id
+Price | string | transaction price
 Fee | string | handling fee
-FillQuantity | string | Order Quantity (Zhang)
-averagePrice | string | Average order price
-orderTime | string | order time
-Status | string | Order status (new: pending order, filled: completed transaction, canceled: complete withdrawal, partiallyCanceled: partial withdrawal)
+ExcType | string | liquidity direction, T: taker M: maker
+Side | string | order direction
+Quantity | string | Number of transactions
 
 ```
 Request:
-Url: http://172.20.20.156:9320/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+Url: http://domain/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
 Method: GET
-Headers:
-Accept: application/json
-ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
-ACCESS-SIGN: d279f3c59f38cf2c4b25862aa43bf81aa4b5783fab193b2a1683d5be81c3823a
-ACCESS-TIMESTAMP: 2019-06-09T04:14:18.213Z
-Content-Type: application/json; charset=UTF-8
-Cookie: locale=zh_CN
-Body:
-preHash: 2019-06-09T04:14:18.213ZGET/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+Headers: 
+	Accept: application/json
+	ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
+	ACCESS-SIGN: 924e1c06be7d08c6b600f4af0022308af189fc63dc0352dcbc6d2073d3768a92
+	ACCESS-TIMESTAMP: 2019-05-31T06:07:56.724Z
+	Content-Type: application/json; charset=UTF-8
+	Cookie: locale=zh_CN
+Body: 
+preHash: 2019-05-31T06:07:56.724ZGET/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
 
 Response:
 {
-  "code": 200,
-  "data": [
-    {
-      "orderId": "580719990266232832",
-      "direction": "openLong",
-      "leverage": "20",
-      "symbol": "ETHUSDT",
-      "orderType": "limit",
-      "quantity": "7",
-      "orderPrice": "147.70",
-      "orderValue": "0.0010",
-      "fee": "0.0000",
-      "filledQuantity": "0",
-      "averagePrice": "0.00",
-      "orderTime": "2019-05-22T03:33:55.0Z",
-      "status": "canceled"
-    },
-    {
-      "orderId": "580719596848906240",
-      "direction": "openLong",
-      "leverage": "20",
-      "symbol": "ETHUSDT",
-      "orderType": "limit",
-      "quantity": "2",
-      "orderPrice": "146.05",
-      "orderValue": "0.0003",
-      "fee": "0.0000",
-      "filledQuantity": "0",
-      "averagePrice": "0.00",
-      "orderTime": "2019-05-22T03:32:21.0Z",
-      "status": "canceled"
-    }
-  ]
+    "code":200,
+    "data":[
+        {
+            "symbol":"BTCUSDT",
+            "tradeTime":"2019-05-31T02:41:45.683Z",
+            "tradeId":"580714315825905665",
+            "orderId":"5807143157122003",
+            "price":"8086.5",
+            "fee":"0.0001115191",
+            "execType":"T",
+            "side":"openLong",
+            "quantity":"1503"
+        },
+        {
+            "symbol":"BTCUSDT",
+            "tradeTime":"2019-05-31T02:41:45.681Z",
+            "tradeId":"580714315825905664",
+            "orderId":"5807143157122003",
+            "price":"8086.5",
+            "fee":"0.0001115191",
+            "execType":"T",
+            "side":"openLong",
+            "quantity":"1503"
+        },
+        {
+            "symbol":"BTCUSDT",
+            "tradeTime":"2019-05-31T02:41:45.680Z",
+            "tradeId":"580714315825905663",
+            "orderId":"5807143157122003",
+            "price":"8086.5",
+            "fee":"0.0001115191",
+            "execType":"T",
+            "side":"openLong",
+            "quantity":"1503"
+        }
+    ]
 }
 ```
 
