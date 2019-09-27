@@ -1322,85 +1322,88 @@ Response:
 ```
 按用户输入进行撤单操作
 限速规则：10次/2秒
-HTTP GET/api/usdt/v2/order/fills
+HTTP GET/api/swap/v2/order/fills
 ```
 
 请求参数：
 
-名称  | 类型  | 是否必填  | 说明
----------|---------|---------|---------|
-symbol      | string | 是 | 合约名称，如BTCUSDT
-orderId      | string | 是 | 订单Id
-lastTradeId      | string | 否 | 成交Id，分页使用，每页固定20条，默认0返回最新20条
 
+名称  | 类型  | 是否必填  | 说明
+---|---|---|---
+symbol      | string | 是 | 合约名称，如BTCUSDT
+orderId      | string | 是 | 订单id
+lastTradeId      | string | 否 | 成交id，分页使用
+ 
 返回字段说明：
 
 名称   | 类型  | 说明
----------|---------|---------|
-orderId   | string | 订单Id
-direction   | string | 订单方向
-leverage   | string | 杠杆倍数
+---|---|---
 symbol   | string | 合约名称，如BTCUSDT
-orderType   | string | 订单类型，限价=limit 市价=market
-quantity   | string | 订单数量（张）
-orderPrice   | string | 订单价格
-orderValue   | string | 订单价值
+tradeTime   | string | 成交时间，UTC时间
+tradeId   | string | 成交id
+orderId   | string | 订单Id
+price   | string | 成交价格
 fee   | string | 手续费
-filledQuantity   | string | 订单已成交数量（张）
-averagePrice   | string | 订单平均价格
-orderTime   | string | 订单时间
-status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完全撤单,partiallyCanceled:部分撤单）
+execType   | string | 流动性方向，T：taker M：maker
+side   | string | 订单方向
+quantity   | string | 成交数量
 
 ```
 Request:
-Url: http://172.20.20.156:9320/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+Request:
+Url: http://域名/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
 Method: GET
 Headers: 
 	Accept: application/json
 	ACCESS-KEY: 978672ddedbd1c5340a83a277b2ac654
-	ACCESS-SIGN: d279f3c59f38cf2c4b25862aa43bf81aa4b5783fab193b2a1683d5be81c3823a
-	ACCESS-TIMESTAMP: 2019-06-09T04:14:18.213Z
+	ACCESS-SIGN: 924e1c06be7d08c6b600f4af0022308af189fc63dc0352dcbc6d2073d3768a92
+	ACCESS-TIMESTAMP: 2019-05-31T06:07:56.724Z
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-06-09T04:14:18.213ZGET/api/usdt/v2/order/fills?symbol=ETHUSDT&lastTradeId=0&orderId=586149733106667520
+preHash: 2019-05-31T06:07:56.724ZGET/api/swap/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
 
-Response:		
+Response:
 {
-  "code": 200, 
-  "data": [
-    {
-      "orderId": "580719990266232832", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "ETHUSDT", 
-      "orderType": "limit", 
-      "quantity": "7", 
-      "orderPrice": "147.70", 
-      "orderValue": "0.0010", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:33:55.0Z", 
-      "status": "canceled"
-    }, 
-    {
-      "orderId": "580719596848906240", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "ETHUSDT", 
-      "orderType": "limit", 
-      "quantity": "2", 
-      "orderPrice": "146.05", 
-      "orderValue": "0.0003", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:32:21.0Z", 
-      "status": "canceled"
-    }
-  ]
+    "code":200,
+    "data":[
+        {
+            "symbol":"BTCUSDT",
+            "tradeTime":"2019-05-31T02:41:45.683Z",
+            "tradeId":"580714315825905665",
+            "orderId":"5807143157122003",
+            "price":"8086.5",
+            "fee":"0.0001115191",
+            "execType":"T",
+            "side":"openLong",
+            "quantity":"1503"
+        },
+        {
+            "symbol":"BTCUSDT",
+            "tradeTime":"2019-05-31T02:41:45.681Z",
+            "tradeId":"580714315825905664",
+            "orderId":"5807143157122003",
+            "price":"8086.5",
+            "fee":"0.0001115191",
+            "execType":"T",
+            "side":"openLong",
+            "quantity":"1503"
+        },
+        {
+            "symbol":"BTCUSDT",
+            "tradeTime":"2019-05-31T02:41:45.680Z",
+            "tradeId":"580714315825905663",
+            "orderId":"5807143157122003",
+            "price":"8086.5",
+            "fee":"0.0001115191",
+            "execType":"T",
+            "side":"openLong",
+            "quantity":"1503"
+        }
+    ]
 }
+
+
 ```
 
 ### 私有接口-获取资金费率列表
