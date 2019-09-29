@@ -79,7 +79,7 @@ ACCESS-SIGN的值生成规则：
 1. 不带参数：
 preHash String：2019-03-08T10:59:25.789ZGET/account/list
 2. 带参数：
-preHash String：2019-03-08T10:59:25.789ZGET/account/list?symbol=BTCUSDT
+preHash String：2019-03-08T10:59:25.789ZGET/account/list?symbol=BTC-SWAP
 ```
 
 
@@ -99,7 +99,7 @@ preHash: 2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 
 
 ```
-Url: http://域名/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://域名/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -109,13 +109,13 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHBTC-SWAPUSDT&size=10
 ```
 
 
 - POST协议接口情况：
 ```
-preHash String：2019-03-08T10:59:25.789ZPOST/account/add{"symbol":"BTCUSDT","quantity":"70"}
+preHash String：2019-03-08T10:59:25.789ZPOST/account/add{"symbol":"BTC-SWAP","quantity":"70"}
 ```
 
 
@@ -129,8 +129,8 @@ Headers:
 	ACCESS-TIMESTAMP: 2019-05-22T03:33:53.562Z
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
-Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","clientId":"1558496033481"}
+Body: {"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","clientId":"1558496033481"}
 ```
 - 签名算法验证：
 
@@ -254,14 +254,14 @@ fun signForContractOpenApi(method: String, requestUrl: String, requestBody: Stri
 ```
 获取合约的深度列表
 限速规则：20次/2秒
-HTTP GET /api/usdt/v2/market/orderBook?symbol=BTCUSDT
+HTTP GET /api/usdt/v2/market/orderBook?symbol=BTC-SWAP
 ```
 
 请求参数：
 
 名称  | 类型  | 是否必填  | 说明 |
 ---------|--------|---------|--------|
-symbol | string | 是 | 合约名称，如BTCUSDT |
+symbol | string | 是 | 合约名称，BTC-SWAP |
 size   | string | 否 | 深度档位，值有5、10、50、100。默认值10|
 
 返回字段说明：
@@ -284,14 +284,14 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 
 
 Response:
 {
   "code": 200, 
   "data": {
-    "symbol": "BTCUSDT", 
+    "symbol": "BTC-SWAP", 
     "asks": [
       [
         "7863.0", 
@@ -363,7 +363,7 @@ HTTP GET /api/usdt/v2/market/tickers
 
 名称   | 类型  | 说明
 ---------|---------|---------|
-symbol         | string | 合约名称，如BTCUSDT
+symbol         | string | 合约名称，如BTC-SWAP
 bestAskPrice   | string | 卖一价
 bestAskSize    | string | 卖一量
 bestBidPrice   | string | 买一价
@@ -392,7 +392,7 @@ Response:
 {
   "code": 200, 
   "data": {
-    "ETHUSDT": {
+    "ETH-SWAP": {
       "lastPrice": "242.46", 
       "markPrice": "242.46", 
       "bestAskPrice": "243.20", 
@@ -405,7 +405,7 @@ Response:
       "bestBidVolume": "5312",
       "time":"2019-09-18T02:41:08.016Z"
     }, 
-    "BTCUSDT": {
+    "BTC-SWAP": {
       "lastPrice": "8548.0", 
       "markPrice": "8548.0", 
       "bestAskPrice": "8601.0", 
@@ -432,7 +432,7 @@ HTTP GET /api/usdt/v2/market/klines
 
 名称  | 类型  | 是否必填  | 说明 |
 ---------|---------|---------|---------|
-symbol      | string | 是 | 合约名称，如BTCUSDT |
+symbol      | string | 是 | 合约名称，如BTC-SWAP |
 startTime   | string | 是 | 开始时间，ISO8601格式时间戳 到秒 |
 endTime     | string | 是 |截止时间，ISO8601格式时间戳 到秒|
 resolution  | string | 是 | Kline粒度，取值范围参考说明|
@@ -463,7 +463,7 @@ buyTurnover   | string | 主买额
 
 ```
 Request:
-Url: http://域名/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+Url: http://域名/api/usdt/v2/market/klines?symbol=BTC-SWAP&resolution=1&startTime=1557425760&endTime=1557425820
 Method: GET
 Headers: 
 	Accept: application/json
@@ -524,7 +524,7 @@ HTTP GET /api/usdt/v2/market/trades
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-symbol      | string | 是 | 合约名称，如BTCUSDT
+symbol      | string | 是 | 合约名称，如BTC-SWAP
 limit  | string | 否 | 返回记录数，默认10，最大100
 
 返回字段说明：
@@ -539,14 +539,14 @@ time   | string | 成交时间
 
 ```
 Request:
-Url: http://域名/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=1
+Url: http://域名/api/usdt/v2/market/trades?symbol=BTC-SWAP&limit=1
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=10
+preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/trades?symbol=BTC-SWAP&limit=10
 
 Response:
 {
@@ -579,21 +579,21 @@ HTTP GET /api/usdt/v2/market/fundingRate
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-symbol      | string | 是 | 合约名称，如BTCUSDT
+symbol      | string | 是 | 合约名称，如BTC-SWAP
 
 返回字段说明：无
 
 
 ```
 Request:
-Url: http://域名/api/usdt/v2/market/fundingRate?symbol=BTCUSDT
+Url: http://域名/api/usdt/v2/market/fundingRate?symbol=BTC-SWAP
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/fundingRate?symbol=BTCUSDT
+preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/fundingRate?symbol=BTC-SWAP
 
 Response:
 {
@@ -663,7 +663,7 @@ HTTP GET /api/usdt/v2/position/list
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-symbol      | string | 否 | 合约名称，如BTCUSDT
+symbol      | string | 否 | 合约名称，如BTC-SWAP
 
 返回字段说明：
 
@@ -718,7 +718,7 @@ Response:
       "realisedPnl": "0.0069", 
       "roe": "0.0872", 
       "side": "long", 
-      "symbol": "BTCUSDT", 
+      "symbol": "BTC-SWAP", 
       "unrealisedPnl": "0.0024"
     }, 
     {
@@ -735,7 +735,7 @@ Response:
       "realisedPnl": "0.0004", 
       "roe": "-0.2139", 
       "side": "short", 
-      "symbol": "BTCUSDT", 
+      "symbol": "BTC-SWAP", 
       "unrealisedPnl": "-0.0013"
     }
   ]
@@ -753,7 +753,7 @@ HTTP POST/api/usdt/v2/order/place
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-symbol      | string | 是 | 合约名称，如BTCUSDT
+symbol      | string | 是 | 合约名称，如BTC-SWAP
 direction      | string | 是 | 方向
 leverage      | string | 是 | 杠杆倍数
 orderType      | string | 是 | 订单类型，默认为limit，其他枚举值：postOnly（只做maker）、fok（Fill or Kill）、ioc（Immediate Or Cancel）
@@ -788,8 +788,8 @@ Headers:
 	ACCESS-TIMESTAMP: 2019-05-22T03:33:53.562Z
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
-Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+Body: {"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
 
 Response:
 {
@@ -852,7 +852,7 @@ HTTP GET/api/usdt/v2/order/openOrders
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-symbol      | string | 否 | 合约名称，如BTCUSDT
+symbol      | string | 否 | 合约名称，如BTC-SWAP
 pageNum      | string | 否 | 页码，默认第1页
 pageSize      | string | 否 | 单页记录数，默认10
 
@@ -894,7 +894,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
 
 Response:
 {
@@ -904,7 +904,7 @@ Response:
       "orderId": "580721369818955776", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "146.30", 
@@ -919,7 +919,7 @@ Response:
       "orderId": "580721368082513920", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "6", 
       "orderPrice": "145.90", 
@@ -946,7 +946,7 @@ HTTP GET/api/usdt/v2/order/openOrdersByPage
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-symbol      | string | 否 | 合约名称，如BTCUSDT
+symbol      | string | 否 | 合约名称，如BTC-SWAP
 latestOrderId      | string | 否 | 订单ID。默认为空，返回最新20条数据记录，规则：第一页传空值，从第二页开始传上一页列表orderId值-1
 
 返回字段说明：
@@ -989,7 +989,7 @@ Response:
       "orderId": "580721369818955776", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "146.30", 
@@ -1004,7 +1004,7 @@ Response:
       "orderId": "580721368082513920", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "6", 
       "orderPrice": "145.90", 
@@ -1072,7 +1072,7 @@ Response:
     "orderId": "580721369818955776", 
     "direction": "openLong", 
     "leverage": "20", 
-    "symbol": "ETHUSDT", 
+    "symbol": "BTC-SWAP", 
     "orderType": "limit", 
     "quantity": "7", 
     "orderPrice": "146.30", 
@@ -1127,7 +1127,7 @@ status   | string | 订单状态(filled:完成成交,canceled:完全撤单,parti
 
 ```
 Request:
-Url: http://域名/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+Url: http://域名/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1137,7 +1137,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
 
 Response:
 {
@@ -1147,7 +1147,7 @@ Response:
       "orderId": "580719990266232832", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "147.70", 
@@ -1162,7 +1162,7 @@ Response:
       "orderId": "580719596848906240", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "2", 
       "orderPrice": "146.05", 
@@ -1236,7 +1236,7 @@ Response:
       "orderId": "580719990266232832", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "147.70", 
@@ -1251,7 +1251,7 @@ Response:
       "orderId": "580719596848906240", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "2", 
       "orderPrice": "146.05",  
@@ -1338,7 +1338,7 @@ lastTradeId      | string | 否 | 成交id，分页使用
 
 名称   | 类型  | 说明
 ---|---|---
-symbol   | string | 合约名称，如BTCUSDT
+symbol   | string | 合约名称，如BTC-SWAP
 tradeTime   | string | 成交时间，UTC时间
 tradeId   | string | 成交id
 orderId   | string | 订单Id
@@ -1351,7 +1351,7 @@ quantity   | string | 成交数量
 ```
 Request:
 Request:
-Url: http://域名/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
+Url: http://域名/api/usdt/v2/order/fills?symbol=BTC-SWAP&lastTradeId=580714315825905664&orderId=5807143157122003
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1368,7 +1368,7 @@ Response:
     "code":200,
     "data":[
         {
-            "symbol":"BTCUSDT",
+            "symbol":"BTC-SWAP",
             "tradeTime":"2019-05-31T02:41:45.683Z",
             "tradeId":"580714315825905665",
             "orderId":"5807143157122003",
@@ -1379,7 +1379,7 @@ Response:
             "quantity":"1503"
         },
         {
-            "symbol":"BTCUSDT",
+            "symbol":"BTC-SWAP",
             "tradeTime":"2019-05-31T02:41:45.681Z",
             "tradeId":"580714315825905664",
             "orderId":"5807143157122003",
@@ -1390,7 +1390,7 @@ Response:
             "quantity":"1503"
         },
         {
-            "symbol":"BTCUSDT",
+            "symbol":"BTC-SWAP",
             "tradeTime":"2019-05-31T02:41:45.680Z",
             "tradeId":"580714315825905663",
             "orderId":"5807143157122003",
@@ -1425,7 +1425,7 @@ pageSize      | string | 否 | 默认值10，每页返回记录条数
 
 名称   | 类型  | 说明
 ---------|---------|---------|
-symbol   | string | 合约名称，如BTCUSDT
+symbol   | string | 合约名称，如BTC-SWAP
 side   | string | 方向
 markPrice   | string | 标记价格
 positionValue   | string | 仓位价值
@@ -1453,7 +1453,7 @@ Response:
   "code": 200, 
   "data": [
     {
-      "symbol": "BTCUSDT", 
+      "symbol": "BTC-SWAP", 
       "side": "short", 
       "markPrice": "8086.5000", 
       "positionValue": "0.1237", 
@@ -1463,7 +1463,7 @@ Response:
       "leverage": "20"
     }, 
     {
-      "symbol": "BTCUSDT", 
+      "symbol": "BTC-SWAP", 
       "side": "long", 
       "markPrice": "8086.5000", 
       "positionValue": "0.1237", 
