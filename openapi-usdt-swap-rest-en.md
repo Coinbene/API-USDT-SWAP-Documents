@@ -64,7 +64,7 @@ ACCESS-SIGN value generation rules:
 - The timestamp value is the same as the ACCESS-TIMESTAMP request header, and must be the decimal time of the UTC time zone Unix timestamp or the time format of the ISO8601 standard, which is accurate to the millisecond.
 - Method is the request method, all letters are capitalized: GET/POST
 - requestPath is the request interface path, for example: /api/usdt/v2/market/orderBook
-- Body is the string of the request body. The GET request has no body information to omit; the POST request has a body information JSON string, such as {"symbol": "BTCUSDT", "order_id": "7440"}
+- Body is the string of the request body. The GET request has no body information to omit; the POST request has a body information JSON string, such as {"symbol": "BTC-SWAP", "order_id": "7440"}
 - The secret is generated when the user applies for the API
 - **Do not disclose secret to others or transfer them to the server at any time**
 
@@ -74,7 +74,7 @@ Sample interface request:
 1. Without parameters:
 preHash String：2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 2. With parameters:
-preHash String：2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash String：2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 ```
 
 
@@ -94,7 +94,7 @@ preHash: 2019-05-21T11:14:16.161ZGET/api/usdt/v2/market/tickers
 
 
 ```
-Url: http://domain/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://domain/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -104,13 +104,13 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 ```
 
 
 - POST protocol interface situation:
 ```
-preHash String：2019-03-08T10:59:25.789ZPOST/account/add{"symbol":"BTCUSDT","quantity":"70"}
+preHash String：2019-03-08T10:59:25.789ZPOST/account/add{"symbol":"BTC-SWAP","quantity":"70"}
 ```
 
 
@@ -124,8 +124,8 @@ Headers:
 	ACCESS-TIMESTAMP: 2019-05-22T03:33:53.562Z
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
-Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+Body: {"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
 ```
 - Signature algorithm verification:
 
@@ -224,14 +224,14 @@ class TestUtil(unittest.TestCase):
 ```
 Get a deep list of contracts
 Speed limit rule: 20 times per 2 seconds
-HTTP GET /api/usdt/v2/market/orderBook?symbol=BTCUSDT
+HTTP GET /api/usdt/v2/market/orderBook?symbol=BTC-SWAP
 ```
 
 Request parameters:
 
 Name | Type | Required | Description |
 ---------|--------|---------|--------|
-symbol | string | yes | contract name, such as BTCUSDT |
+symbol | string | yes | contract name, such as BTC-SWAP |
 size | string | No | Depth stall, values are 5, 10, 50, 100. Default value 10|
 
 Return field description:
@@ -247,21 +247,21 @@ time      | string |  timestamp International time
 
 ```
 Request:
-Url: http://domain/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://domain/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+preHash: 2019-05-21T11:10:28.464ZGET/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 
 
 Response:
 {
   "code": 200, 
   "data": {
-    "symbol": "BTCUSDT", 
+    "symbol": "BTC-SWAP", 
     "asks": [
       [
         "7863.0", 
@@ -333,7 +333,7 @@ Return field description:
 
 Name | Type | Description
 ---------|---------|---------|
-symbol | string | contract name, such as BTCUSDT
+symbol | string | contract name, such as BTC-SWAP
 bestAskPrice | string | Sell one price
 bestAskSize | string | Sell a quantity
 bestBidPrice | string | Buy one price
@@ -361,7 +361,7 @@ Response:
 {
   "code": 200, 
   "data": {
-    "ETHUSDT": {
+    "ETH-SWAP": {
       "lastPrice": "242.46", 
       "markPrice": "242.46", 
       "bestAskPrice": "243.20", 
@@ -374,7 +374,7 @@ Response:
       "bestBidVolume": "5312",
       "time":"2019-09-18T02:41:08.016Z"
     }, 
-    "BTCUSDT": {
+    "BTC-SWAP": {
       "lastPrice": "8548.0", 
       "markPrice": "8548.0", 
       "bestAskPrice": "8601.0", 
@@ -401,7 +401,7 @@ Request parameters:
 
 Name | Type | Required | Description |
 ---------|---------|---------|---------|
-symbol | string | yes | contract name, such as BTCUSDT |
+symbol | string | yes | contract name, such as BTC-SWAP |
 startTime | string | yes | start time, ISO8601 format timestamp to seconds |
 endTime | string | yes | deadline, ISO8601 format timestamp to seconds |
 resolution | string | yes | Kline granularity, range of values ​​reference description|
@@ -433,14 +433,15 @@ buyTurnover | string | main purchase amount
 
 ```
 Request:
-Url: http://domain/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+Url: http://domain/api/usdt/v2/market/klines?symbol=
+&resolution=1&startTime=1557425760&endTime=1557425820
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:16:20.521ZGET/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+preHash: 2019-05-21T11:16:20.521ZGET/api/usdt/v2/market/klines?symbol=BTC-SWAP&resolution=1&startTime=1557425760&endTime=1557425820
 
 Response:
 Format description:[time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
@@ -494,7 +495,7 @@ Request parameters:
 
 Name | Type | Required | Description
 ---------|---------|---------|---------|
-symbol | string | yes | contract name, such as BTCUSDT
+symbol | string | yes | contract name, such as BTC-SWAP
 limit | string | no | return the number of records, default 10, maximum 100
 
 Return field description:
@@ -511,14 +512,14 @@ time | string | closing time
 
 ```
 Request:
-Url: http://domain/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=1
+Url: http://domain/api/usdt/v2/market/trades?symbol=BTC-SWAP&limit=1
 Method: GET
 Headers: 
 	Accept: application/json
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/trades?symbol=BTCUSDT&limit=10
+preHash: 2019-05-21T11:19:52.303ZGET/api/usdt/v2/market/trades?symbol=BTC-SWAP&limit=10
 
 Response:
 {
@@ -601,7 +602,7 @@ Request parameters:
 
 Name | Type | Required | Description
 ---------|---------|---------|---------|
-symbol | string | no | contract name, such as BTCUSDT
+symbol | string | no | contract name, such as BTC-SWAP
 
 Return field description:
 
@@ -656,7 +657,7 @@ Response:
       "realisedPnl": "0.0069", 
       "roe": "0.0872", 
       "side": "long", 
-      "symbol": "BTCUSDT", 
+      "symbol": "BTC-SWAP", 
       "unrealisedPnl": "0.0024"
     }, 
     {
@@ -673,7 +674,7 @@ Response:
       "realisedPnl": "0.0004", 
       "roe": "-0.2139", 
       "side": "short", 
-      "symbol": "BTCUSDT", 
+      "symbol": "BTC-SWAP", 
       "unrealisedPnl": "-0.0013"
     }
   ]
@@ -691,7 +692,7 @@ Request parameters:
 
 Name | Type | Required | Description
 ---------|---------|---------|---------|
-symbol | string | yes | contract name, such as BTCUSDT
+symbol | string | yes | contract name, such as BTC-SWAP
 direction | string | yes | direction
 leverage | string | yes | leverage multiple
 orderType | string | is the | order type, default to limit, and other enumeration values: postOnly (make only), FOK (Fill or Kill), IOC (Immediate Or Cancel)
@@ -705,7 +706,7 @@ clientId | string | no | user request id, transparently returned to the user
 1.direction value description:
 openLong = open long ; openShort=open short ;closeLong= close long; closeShort=close short
 3.leverage value range: 2, 3, 5, 10, 20
-4.orderPrice accuracy description: BTCUSDT price accuracy is 0.5; ETHUSDT price accuracy is 0.05
+4.orderPrice accuracy description: BTC-SWAP price accuracy is 0.5; BTC-SWAP price accuracy is 0.05
 ```
 
 Return field description:
@@ -727,8 +728,8 @@ Headers:
 	ACCESS-TIMESTAMP: 2019-05-22T03:33:53.562Z
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
-Body: {"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
-preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"ETHUSDT","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+Body: {"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
+preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"BTC-SWAP","orderType":"limit","leverage":"20","orderPrice":"147.7","quantity":"7","direction":"openLong","marginMode":"fixed","clientId":"1558496033481"}
 
 Response:
 {
@@ -791,7 +792,7 @@ Request parameters:
 
 Name | Type | Required | Description
 ---------|---------|---------|---------|
-symbol | string | no | contract name, such as BTCUSDT
+symbol | string | no | contract name, such as BTC-SWAP
 pageNum | string | no | page number, default page 1
 pageSize | string | no | single page number, default 10
 
@@ -823,7 +824,7 @@ status | string | Order Status(new,filled,canceled,partiallyCanceled）
 
 ```
 Request:
-Url: http://domain/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+Url: http://domain/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
 Method: GET
 Headers: 
 	Accept: application/json
@@ -833,7 +834,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
 
 Response:
 {
@@ -843,7 +844,7 @@ Response:
       "orderId": "580721369818955776", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "146.30", 
@@ -858,7 +859,7 @@ Response:
       "orderId": "580721368082513920", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "6", 
       "orderPrice": "145.90", 
@@ -884,7 +885,7 @@ Request parameters:
 
 Name | Type | Required | Description
 ---------|---------|---------|---------|
-symbol | string | no | contract name, such as BTCUSDT
+symbol | string | no | contract name, such as BTC-SWAP
 latestOrderId | string | no | Order id, paging. The default is empty, returning the latest 20 data records
 
 
@@ -928,7 +929,7 @@ Response:
       "orderId": "580721369818955776", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "146.30", 
@@ -943,7 +944,7 @@ Response:
       "orderId": "580721368082513920", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "6", 
       "orderPrice": "145.90", 
@@ -1011,7 +1012,7 @@ Response:
     "orderId": "580721369818955776", 
     "direction": "openLong", 
     "leverage": "20", 
-    "symbol": "ETHUSDT", 
+    "symbol": "BTC-SWAP", 
     "orderType": "limit", 
     "quantity": "7", 
     "orderPrice": "146.30", 
@@ -1039,7 +1040,7 @@ Name | Type | Required | Description
 ---------|---------|---------|---------|
 beginTime | string | no | start time, millisecond timestamp
 endTime | string | no | end time, millisecond timestamp
-symbol | string | yes | contract name, such as BTCUSDT
+symbol | string | yes | contract name, such as BTC-SWAP
 pageNum | string | no | page number, default value 1
 pageSize | string | no | single page number, default 10
 direction | string | no | openLong=open more openShort=open
@@ -1066,7 +1067,7 @@ status | string | Order Status(filled,canceled,partiallyCanceled）
 
 ```
 Request:
-Url: http://domain/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+Url: http://domain/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1076,7 +1077,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=ETHUSDT&pageNum=1&pageSize=10
+preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
 
 Response:
 {
@@ -1086,7 +1087,7 @@ Response:
       "orderId": "580719990266232832", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "147.70", 
@@ -1101,7 +1102,7 @@ Response:
       "orderId": "580719596848906240", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "2", 
       "orderPrice": "146.05", 
@@ -1130,7 +1131,7 @@ Name | Type | Required | Description
 ---------|---------|---------|---------|
 beginTime | string | no | start time, millisecond timestamp
 endTime | string | no | end time, millisecond timestamp
-symbol | string | no | contract name, such as BTCUSDT
+symbol | string | no | contract name, such as BTC-SWAP
 status | string | Order Status(filled,canceled,partiallyFilled）
 latestOrderId | string | no | Order id, paging. The default is empty, returning the latest 20 data records
 
@@ -1175,7 +1176,7 @@ Response:
       "orderId": "580719990266232832", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "7", 
       "orderPrice": "147.70", 
@@ -1190,7 +1191,7 @@ Response:
       "orderId": "580719596848906240", 
       "direction": "openLong", 
       "leverage": "20", 
-      "symbol": "ETHUSDT", 
+      "symbol": "BTC-SWAP", 
       "orderType": "limit", 
       "quantity": "2", 
       "orderPrice": "146.05", 
@@ -1268,7 +1269,7 @@ Request parameters:
 
 Name | Type | Is it mandatory | Description
 ---|---|---|---
-Symbol | string | is the | contract name, such as BTCUSDT
+Symbol | string | is the | contract name, such as BTC-SWAP
 OrderId | string | is | order ID
 LastTradeId | string | no | transaction id, paging, default value 0, 20 pieces per page size
 
@@ -1276,7 +1277,7 @@ Return field description:
 
 Name | Type | Description
 ---|---|---
-Symbol | string | contract name, such as BTCUSDT
+Symbol | string | contract name, such as BTC-SWAP
 TradeTime | string | transaction time, UTC time
 TradeId | string | transaction ID
 Order Id | string | Order Id
@@ -1288,7 +1289,7 @@ Quantity | string | Number of transactions
 
 ```
 Request:
-Url: http://domain/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
+Url: http://domain/api/usdt/v2/order/fills?symbol=BTC-SWAP&lastTradeId=580714315825905664&orderId=5807143157122003
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1298,14 +1299,14 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-31T06:07:56.724ZGET/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
+preHash: 2019-05-31T06:07:56.724ZGET/api/usdt/v2/order/fills?symbol=BTC-SWAP&lastTradeId=580714315825905664&orderId=5807143157122003
 
 Response:
 {
     "code":200,
     "data":[
         {
-            "symbol":"BTCUSDT",
+            "symbol":"BTC-SWAP",
             "tradeTime":"2019-05-31T02:41:45.683Z",
             "tradeId":"580714315825905665",
             "orderId":"5807143157122003",
@@ -1316,7 +1317,7 @@ Response:
             "quantity":"1503"
         },
         {
-            "symbol":"BTCUSDT",
+            "symbol":"BTC-SWAP",
             "tradeTime":"2019-05-31T02:41:45.681Z",
             "tradeId":"580714315825905664",
             "orderId":"5807143157122003",
@@ -1327,7 +1328,7 @@ Response:
             "quantity":"1503"
         },
         {
-            "symbol":"BTCUSDT",
+            "symbol":"BTC-SWAP",
             "tradeTime":"2019-05-31T02:41:45.680Z",
             "tradeId":"580714315825905663",
             "orderId":"5807143157122003",
@@ -1359,7 +1360,7 @@ Return field description:
 
 Name | Type | Description
 ---------|---------|---------|
-Symbol | string | contract name, such as BTCUSDT
+Symbol | string | contract name, such as BTC-SWAP
 Side | string | direction
 markPrice | string | tag price
 positionValue | string | position value
@@ -1387,7 +1388,7 @@ Response:
   "code": 200,
   "data": [
     {
-      "symbol": "BTCUSDT",
+      "symbol": "BTC-SWAP",
       "side": "short",
       "markPrice": "8086.5000",
       "positionValue": "0.1237",
@@ -1397,7 +1398,7 @@ Response:
       "leverage": "20"
     },
     {
-      "symbol": "BTCUSDT",
+      "symbol": "BTC-SWAP",
       "side": "long",
       "markPrice": "8086.5000",
       "positionValue": "0.1237",
