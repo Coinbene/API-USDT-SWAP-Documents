@@ -69,7 +69,7 @@ ACCESS-SIGN的值生成规则：
 - 其中，timestamp的值与ACCESS-TIMESTAMP请求头相同，必须是UTC时区Unix时间戳的十进制秒数或ISO8601标准的时间格式，精确到毫秒。
 - Method是请求方法，字母全部大写：GET/POST
 - requestPath是请求接口路径，例如：/api/usdt/v2/market/orderBook
-- body是指请求主体的字符串。GET请求没有body信息可省略；POST请求有body信息JSON串，例如{"symbol":"BTCUSDT","order_id":"7440"}
+- body是指请求主体的字符串。GET请求没有body信息可省略；POST请求有body信息JSON串，例如{"symbol":"BTC-SWAP","order_id":"7440"}
 - secret为用户申请API时所生成的
 - 任何时候都请不要把secret透露给其他人或传输到服务器端
 
@@ -277,7 +277,7 @@ time      | string |  时间戳，国际时间
 
 ```
 Request:
-Url: http://域名/api/usdt/v2/market/orderBook?symbol=ETHUSDT&size=10
+Url: http://域名/api/usdt/v2/market/orderBook?symbol=BTC-SWAP&size=10
 Method: GET
 Headers: 
 	Accept: application/json
@@ -470,7 +470,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-21T11:16:20.521ZGET/api/usdt/v2/market/klines?symbol=BTCUSDT&resolution=1&startTime=1557425760&endTime=1557425820
+preHash: 2019-05-21T11:16:20.521ZGET/api/usdt/v2/market/klines?symbol=BTC-SWAP&resolution=1&startTime=1557425760&endTime=1557425820
 
 Response:
 格式说明:[time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
@@ -766,7 +766,7 @@ clientId      | string | 否 | 用户请求id，透传返回给用户
 ```
 1.direction取值说明：openLong=开多 2.openShort=开空closeLong=平多 closeShort=平空
 3.leverage取值范围：2, 3, 5, 10, 20
-4.orderPrice精度说明：BTCUSDT价格精度是0.5；ETHUSDT价格精度是0.05
+4.orderPrice精度说明：BTC-SWAP价格精度是0.5；ETH-SWAP价格精度是0.05
 ```
 
 返回字段说明：
@@ -884,7 +884,7 @@ status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完�
 
 ```
 Request:
-Url: http://域名/api/usdt/v2/order/openOrders?symbol=ETHUSDT&pageNum=1&pageSize=3
+Url: http://域名/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
 Method: GET
 Headers: 
 	Accept: application/json
@@ -1100,7 +1100,7 @@ HTTP GET/api/usdt/v2/order/closedOrders
 ---------|---------|---------|---------|
 beginTime      | string | 否 | 开始时间，毫秒级时间戳
 endTime      | string | 否 | 结束时间，毫秒级时间戳
-symbol      | string | 是 | 合约名称，如BTCUSDT
+symbol      | string | 是 | 合约名称，如BTC-SWAP
 pageNum      | string | 否 | 页码，默认值 1
 pageSize      | string | 否 | 单页条数，默认值 10
 direction      | string | 否 | openLong=开多 openShort=开空
@@ -1191,7 +1191,7 @@ HTTP GET/api/usdt/v2/order/closedOrdersByPage
 ---------|---------|---------|---------|
 beginTime      | string | 否 | 开始时间，毫秒级时间戳
 endTime      | string | 否 | 结束时间，毫秒级时间戳
-symbol      | string | 否 | 合约名称，如BTCUSDT
+symbol      | string | 否 | 合约名称，如BTC-SWAP
 status   | string | 订单状态(filled:完成成交,canceled:完全撤单,partiallyCanceled:部分撤单）
 latestOrderId      | string | 否 | 订单id。默认为空，返回最新20条数据记录，规则：第一页传空值，从第二页开始传上一页列表orderId值-1
 
@@ -1330,7 +1330,7 @@ HTTP GET/api/usdt/v2/order/fills
 
 名称  | 类型  | 是否必填  | 说明
 ---|---|---|---
-symbol      | string | 是 | 合约名称，如BTCUSDT
+symbol      | string | 是 | 合约名称，如BTC-SWAP
 orderId      | string | 是 | 订单id
 lastTradeId      | string | 否 | 成交id，分页使用
  
@@ -1361,7 +1361,7 @@ Headers:
 	Content-Type: application/json; charset=UTF-8
 	Cookie: locale=zh_CN
 Body: 
-preHash: 2019-05-31T06:07:56.724ZGET/api/usdt/v2/order/fills?symbol=BTCUSDT&lastTradeId=580714315825905664&orderId=5807143157122003
+preHash: 2019-05-31T06:07:56.724ZGET/api/usdt/v2/order/fills?symbol=BTC-SWAP&lastTradeId=580714315825905664&orderId=5807143157122003
 
 Response:
 {
