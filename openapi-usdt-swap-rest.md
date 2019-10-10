@@ -1,6 +1,6 @@
 # coinbene-usdt-rest 合约openapi rest接口说明
 # [English](https://github.com/Coinbene/API-USDT-SWAP-Documents/blob/master/openapi-usdt-swap-rest-en.md)
-# [WebSocket](https://github.com/Coinbene/API-SWAP-Documents/blob/master/openapi-swap-websocket.md)
+# [WebSocket](openapi-usdt-swap-websocket.md)
 * [coinbene-swap-rest行情与交易接口](#coinbene-swap-rest行情与交易接口)
   * [基本信息](#基本信息)
   * [访问限制](#访问限制)
