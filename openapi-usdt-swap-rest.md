@@ -138,7 +138,7 @@ preHash: 2019-05-22T03:33:53.562ZPOST/api/usdt/v2/order/place{"symbol":"BTC-SWAP
 ```
 源串：2019-05-25T03:20:30.362ZGET/api/usdt/v2/account/info
 secret：9daf13ebd76c4f358fc885ca6ede5e27
-生成sign串：a02a6428bb44ad338d020c55acee9dd40bbcb3d96cbe3e48dd6185e51e232aa2
+生成sign串：9e77c73cba34ec465ebc7cc9dfe448c0c377f0663cdbb7bbe8fd379d1ec2659f
 
 样例代码（Java版本）：
 **
