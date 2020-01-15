@@ -871,7 +871,7 @@ pageSize      | string | 否 | 单页记录数，默认10
 orderId   | string | 订单Id
 direction   | string | 方向
 leverage   | string | 杠杆倍数
-orderType   | string | 订单类型, 限价=limit 市价=market
+orderType   | string | 订单类型
 quantity   | string | 成交量（张）
 orderPrice   | string | 订单价格
 orderValue   | string | 订单价值
@@ -956,7 +956,7 @@ latestOrderId      | string | 否 | 订单ID。默认为空，返回最新20条�
 orderId   | string | 订单Id
 direction   | string | 方向
 leverage   | string | 杠杆倍数
-orderType   | string | 订单类型, 限价=limit 市价=market
+orderType   | string | 订单类型
 quantity   | string | 成交量（张）
 orderPrice   | string | 订单价格
 orderValue   | string | 订单价值
@@ -1039,7 +1039,7 @@ orderId      | string | 是 | 订单id
 orderId   | string | 订单Id
 direction   | string | 方向
 leverage   | string | 杠杆倍数
-orderType   | string | 订单类型，限价=limit 市价=market
+orderType   | string | 订单类型 限价:limit; postOnly（只做maker）; fok（Fill or Kill）; ioc（Immediate Or Cancel）
 quantity   | string | 成交量（张）
 orderPrice   | string | 订单价格
 orderValue   | string | 订单价值
@@ -1114,7 +1114,7 @@ orderType      | string | 否 | 订单类型
 orderId   | string | 订单Id
 direction   | string | 方向
 leverage   | string | 杠杆倍数
-orderType   | string | 订单类型，限价=limit 市价=market
+orderType   | string | 订单类型
 quantity   | string | 成交量（张）
 orderPrice   | string | 订单价格
 orderValue   | string | 订单价值
