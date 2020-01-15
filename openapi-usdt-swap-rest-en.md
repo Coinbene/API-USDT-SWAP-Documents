@@ -811,7 +811,7 @@ Name | Type | Description
 orderId | string | Order Id
 direction | string | direction
 leverage | string | leverage multiple
-orderType | string | order type, limit price = limit market price = market
+orderType | string | order type
 quantity | string | Volume (number of sheets)
 orderPrice | string | order price
 orderValue | string | order value
@@ -896,7 +896,7 @@ Name | Type | Description
 orderId | string | Order Id
 direction | string | direction
 leverage | string | leverage multiple
-orderType | string | order type, limit price = limit market price = market
+orderType | string | order type
 quantity | string | Volume (number of sheets)
 orderPrice | string | order price
 orderValue | string | order value
@@ -979,7 +979,7 @@ Name | Type | Description
 orderId | string | Order Id
 direction | string | direction
 leverage | string | leverage multiple
-orderType | string | order type, limit price = limit market price = market
+orderType | string | order type
 quantity | string | Volume (number of sheets)
 orderPrice | string | order price
 orderValue | string | order value
@@ -1054,7 +1054,7 @@ Name | Type | Description
 orderId | string | Order Id
 direction | string | direction
 leverage | string | leverage multiple
-orderType | string | order type, limit price = limit market price = market
+orderType | string | order type
 quantity | string | Volume (number of sheets)
 orderPrice | string | order price
 orderValue | string | order value
