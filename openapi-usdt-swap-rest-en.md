@@ -559,6 +559,7 @@ Name | Type | Description
 availableBalance | string | Available balance
 frozenBalance | string | Freeze assets
 balance | string | account balance
+marginBalance | string |balance including floating profit and loss
 marginRatio | string | margin rate
 unrealisedPnl | string | Unrealized profit and loss
 
