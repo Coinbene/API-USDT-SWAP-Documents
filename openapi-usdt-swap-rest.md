@@ -620,6 +620,7 @@ HTTP GET /api/usdt/v2/account/info
 availableBalance   | string | 可用余额
 frozenBalance   | string | 冻结资产
 balance   | string | 账户余额
+marginBalance   | string | 包含浮动盈亏的余额
 marginRatio   | string | 保证金率
 unrealisedPnl   | string | 未实现盈亏
 
