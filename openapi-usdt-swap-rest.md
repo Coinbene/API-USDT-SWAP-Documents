@@ -1321,7 +1321,7 @@ Response:
 ### 私有接口-获取指定订单成交明细
 
 ```
-按用户输入进行撤单操作
+获取指定订单成交明细
 限速规则：10次/2秒
 HTTP GET/api/usdt/v2/order/fills
 ```
@@ -1410,7 +1410,7 @@ Response:
 ### 私有接口-获取资金费率列表
 
 ```
-按用户输入进行撤单操作
+获取平台资金费率列表
 限速规则：10次/2秒
 HTTP GET/api/usdt/v2/position/feeRate
 ```
