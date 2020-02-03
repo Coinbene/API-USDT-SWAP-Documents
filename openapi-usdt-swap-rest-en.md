@@ -1262,7 +1262,7 @@ Response:
 ### Private Interface - Get the specified order transaction details
 
 ```
-Cancel the order by user input
+Get the specified order transaction details
 Speed limit rule: 10 times per 2 seconds
 HTTP GET/api/usdt/v2/order/fills
 ```
@@ -1346,7 +1346,7 @@ Response:
 ### Private Interface - Get a list of funding rates
 
 ```
-Cancel the order by user input
+Get funding rate list info
 Speed limit rule: 10 times per 2 seconds
 HTTP GET/api/usdt/v2/position/feeRate
 ```
