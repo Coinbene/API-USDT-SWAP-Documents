@@ -1426,8 +1426,9 @@ Error code | message
 10007 | Invalid Content_Type, please use the "application/json" format
 10008 | Request timestamp expired
 10009 | System error
-100011 | Invalid sign
-100012 |api verification failed
+10010 | API authentication failed
+10011 | Invalid sign
+10012 |api verification failed
 11000 |{0}Required parameter is empty
 11001 | {0} parameter value is invalid
 11002 |{0} parameter value exceeds maximum limit
