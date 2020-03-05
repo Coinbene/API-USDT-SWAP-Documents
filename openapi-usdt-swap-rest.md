@@ -374,7 +374,7 @@ high24h        | string | 24h最高价
 low24h         | string | 24h最低价
 volume24h      | string | 24h成交量USDT
 turnover      | string |  
-time      | string |  时间戳，国际时间
+timestamp      | string |  时间戳，UTC国际时间
 
 
 ```
@@ -403,7 +403,7 @@ Response:
       "turnover": "9988", 
       "bestAskVolume": "2222", 
       "bestBidVolume": "5312",
-      "time":"2019-09-18T02:41:08.016Z"
+      "timestamp":"2019-09-18T02:41:08.016Z"
     }, 
     "BTC-SWAP": {
       "lastPrice": "8548.0", 
@@ -416,7 +416,7 @@ Response:
       "turnover": "4994", 
       "bestAskVolume": "1222", 
       "bestBidVolume": "56505",
-      "time":"2019-09-18T02:41:08.016Z"
+      "timestamp":"2019-09-18T02:41:08.016Z"
     }
   }
 }
