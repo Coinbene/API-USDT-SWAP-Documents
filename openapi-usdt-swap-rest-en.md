@@ -344,7 +344,7 @@ high24h | string | 24h highest price
 low24h | string | 24h lowest price
 volume24h | string | 24h volume USDT
 turnover | string | 
-time      | string |  timestamp International time
+timestamp      | string |  timestamp UTC International time
 
 ```
 Request:
@@ -372,7 +372,7 @@ Response:
       "turnover": "9984", 
       "bestAskVolume": "2222", 
       "bestBidVolume": "5312",
-      "time":"2019-09-18T02:41:08.016Z"
+      "timestamp":"2019-09-18T02:41:08.016Z"
     }, 
     "BTC-SWAP": {
       "lastPrice": "8548.0", 
@@ -385,7 +385,7 @@ Response:
       "turnover": "4994", 
       "bestAskVolume": "1222", 
       "bestBidVolume": "56505",
-      "time":"2019-09-18T02:41:08.016Z"
+      "timestamp":"2019-09-18T02:41:08.016Z"
     }
   }
 }
