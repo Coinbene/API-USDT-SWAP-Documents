@@ -473,7 +473,7 @@ Body:
 preHash: 2019-05-21T11:16:20.521ZGET/api/usdt/v2/market/klines?symbol=BTC-SWAP&resolution=1&startTime=1557425760&endTime=1557425820
 
 Response:
-格式说明:[time,open,close,high,low,volume,turnover,buyVolume,buyTurnover]
+格式说明:[time,open,high,low,close,volume,turnover,buyVolume,buyTurnover]
 {
   "code": 200, 
   "data": [
