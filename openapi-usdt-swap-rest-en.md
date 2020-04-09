@@ -241,7 +241,7 @@ Name | Type | Description |
 asks | array | seller depth, [gear price, quantity, the depth consists of several orders]|
 bid | array | buyer depth, [gear price, quantity, the depth consists of several orders]|
 symbol      | string |  contract name
-time      | string |  timestamp International time
+timestamp      | string |  timestamp International time
 
 
 
@@ -420,7 +420,7 @@ the data is array ,Parse the data in the following sequence
 
 Name | Type | Description
 ---------|---------|---------|
-time | string | generation time
+timestamp | string | trade time
 open | string | opening price
 close | string | Closing price
 high | string | highest price
@@ -449,7 +449,7 @@ Format description:[time,open,high,low,close,volume,turnover,buyVolume,buyTurnov
   "code": 200, 
   "data": [
     [
-      "1557428280", 
+      "2019-09-18T02:41:08.016Z", 
       "5794", 
       "5794", 
       "5794", 
@@ -460,7 +460,7 @@ Format description:[time,open,high,low,close,volume,turnover,buyVolume,buyTurnov
       "0"
     ], 
     [
-      "1557426180", 
+      "2019-09-18T02:41:08.016Z", 
       "5794", 
       "5794", 
       "5794", 
@@ -471,7 +471,7 @@ Format description:[time,open,high,low,close,volume,turnover,buyVolume,buyTurnov
       "0"
     ], 
     [
-      "1557427440", 
+      "2019-09-18T02:41:08.016Z", 
       "5794", 
       "5794", 
       "5794", 
@@ -507,7 +507,7 @@ Name | Type | Description
 price | string | transaction price
 side | string | direction of the transaction, s = main sale, b = main purchase
 volume | string | Volume (number of sheets)
-time | string | closing time
+timestamp | string | closing time
 
 
 ```
