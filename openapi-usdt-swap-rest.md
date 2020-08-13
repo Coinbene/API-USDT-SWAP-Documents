@@ -458,7 +458,7 @@ low   | string | 最低价格
 volume   | string | 成交量（张）
 turnover   | string | 交易额
 buyVolume   | string | 主买量（张）
-buyTurnover   | string | 主买额
+buyTurnover   | string | 主卖量（张）
 
 
 ```
