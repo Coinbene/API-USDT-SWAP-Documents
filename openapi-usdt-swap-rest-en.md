@@ -684,6 +684,7 @@ Response:
 
 ### Private Interface - Place an Order
 
+#### The single interface is not supported at present. Please pay attention to the following announcement
 ```
 Place an order,Trading only supports limit orders.
 Speed limit rule: 20 times per 2 seconds
