@@ -24,8 +24,7 @@
 * [Error Code Summary](#error-code-summary)
 
 ## Basic Information
-- This article lists the baseurl of the REST interface: http://openapi-contract.coinbene.com
-- Need science online, Chinese domestic users recommend machine binding host：104.16.127.19 openapi-contract.coinbene.com
+- This article lists the baseurl of the REST interface: https://openapi-contract.coinbene.com
 - Our server is deployed in the US West, and it is recommended that the api robot server be deployed in the US West to reduce network latency.
 - It is recommended to add the own server export IP after the API is created to further enhance the API security check.
 - The response of all interfaces is in JSON format.
