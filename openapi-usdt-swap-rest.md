@@ -252,7 +252,7 @@ fun signForContractOpenApi(method: String, requestUrl: String, requestBody: Stri
 ### 公共接口-获取深度
 ```
 获取合约的深度列表
-限速规则：20次/2秒
+限速规则：10次/1秒
 HTTP GET /api/usdt/v2/market/orderBook?symbol=BTC-SWAP
 ```
 
@@ -353,7 +353,7 @@ Response:
 
 ```
 获取平台全部合约的最新成交价、买一价、卖一价和24交易量
-限速规则：20次/2秒
+限速规则：10次/1秒
 HTTP GET /api/usdt/v2/market/tickers
 ```
 请求参数：无
@@ -424,7 +424,7 @@ Response:
 
 ```
 获取合约K线数据。K线数据最多可获取2000条。
-限速规则：20次/2秒
+限速规则：10次/1秒
 HTTP GET /api/usdt/v2/market/klines
 ```
 请求参数：
@@ -516,7 +516,7 @@ Response:
 
 ```
 获取合约的最新成交信息
-限速规则：20次/2秒
+限速规则：10次/1秒
 HTTP GET /api/usdt/v2/market/trades
 ```
 请求参数：
@@ -571,7 +571,7 @@ Response:
 
 ```
 获取当前合约最新资金费率
-限速规则：6次/1秒
+限速规则：10次/1秒
 HTTP GET /api/usdt/v2/market/fundingRate
 ```
 请求参数：
@@ -605,7 +605,7 @@ Response:
 
 ```
 获取用户币种合约的账户信息
-限速次数：10次/2秒
+限速次数：5次/1秒
 HTTP GET /api/usdt/v2/account/info
 ```
 
@@ -656,7 +656,7 @@ Response:
 
 ```
 获取所有合约的持仓信息
-限速规则：10次/2秒
+限速规则：5次/1秒
 HTTP GET /api/usdt/v2/position/list
 ```
 请求参数：
@@ -747,7 +747,7 @@ Response:
 #### 下单接口目前暂不支持, 请关注后续公告
 ```
 按用户输入进行下单操作
-限速规则：20次/2秒
+限速规则：5次/1秒
 HTTP POST/api/usdt/v2/order/place
 ```
 请求参数：
@@ -806,7 +806,7 @@ Response:
 
 ```
 按用户输入进行撤单操作
-限速规则：20次/2秒
+限速规则：5次/1秒
 HTTP POST/api/usdt/v2/order/cancel
 ```
 请求参数：
@@ -841,114 +841,21 @@ Response:
   "data": "580719990266232832"
 }
 ```
-### 私有接口-查询所有当前委托单列表
+ 
+
+### 私有接口-查询当前委托单列表
 
 
 ```
-按用户请求进行订单列表查询，
-限速规则：5次/2秒
-HTTP GET/api/usdt/v2/order/openOrders
-```
-请求参数：
-
-名称  | 类型  | 是否必填  | 说明
----------|---------|---------|---------|
-symbol      | string | 否 | 合约名称，如BTC-SWAP
-pageNum      | string | 否 | 页码，默认第1页
-pageSize      | string | 否 | 单页记录数，默认10
-
-
-```
-说明
-1.最大支持同时下50个订单
-2.假定一共下了50个订单，并且这些订单都尚未成交，使用参数pageNum=5, pageSize=10，则返回[41, 50]范围内的订单
-```
-
-
-返回字段说明：
-
-名称   | 类型  | 说明
----------|---------|---------|
-orderId   | string | 订单Id
-direction   | string | 方向
-leverage   | string | 杠杆倍数
-orderType   | string | 订单类型
-quantity   | string | 成交量（张）
-orderPrice   | string | 订单价格
-orderValue   | string | 订单价值
-fee   | string | 手续费
-filledQuantity   | string | 成交量（张）
-averagePrice   | string | 平均成交价格
-orderTime   | string | 订单创建时间
-status   | string | 订单状态(new:挂单中,filled:完成成交,canceled:完全撤单,partiallyCanceled:部分撤单）
-
-
-```
-Request:
-Url: http://域名/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
-Method: GET
-Headers: 
-	Accept: application/json
-	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
-	ACCESS-SIGN: U4pKbDuOXqOqbQiqbHLAptEjTSpG7UYUrsbKZclJ5dU=
-	ACCESS-TIMESTAMP: 2019-05-22T03:40:14.396Z
-	Content-Type: application/json; charset=UTF-8
-	Cookie: locale=zh_CN
-Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
-
-Response:
-{
-  "code": 200, 
-  "data": [
-    {
-      "orderId": "580721369818955776", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "7", 
-      "orderPrice": "146.30", 
-      "orderValue": "0.0010", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:39:24.0Z", 
-      "status": "new"
-    }, 
-    {
-      "orderId": "580721368082513920", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "6", 
-      "orderPrice": "145.90", 
-      "orderValue": "0.0009", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:39:23.0Z", 
-      "status": "new"
-    }
-  ]
-}
-```
-
-### 私有接口-按订单ID分页查询当前委托单列表
-
-
-```
-按用户请求进行订单列表查询，
-限速规则：5次/2秒
+按用户请求进行订单列表查询,返回当前委托全部列表
+限速规则：5次/1秒
 HTTP GET/api/usdt/v2/order/openOrdersByPage
 ```
 请求参数：
 
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
-symbol      | string | 否 | 合约名称，如BTC-SWAP
-latestOrderId      | string | 否 | 订单ID。默认为空，返回最新20条数据记录，规则：第一页传空值，从第二页开始传上一页列表orderId值-1
+symbol      | string | 否 | 合约名称，如BTC-SWA
 
 返回字段说明：
 
@@ -1024,7 +931,7 @@ Response:
 
 ```
 通过订单ID获取单个订单信息
-限速规则：10次/2秒
+限速规则：5次/1秒
 HTTP GET/api/usdt/v2/order/info
 ```
 请求参数：
@@ -1086,103 +993,13 @@ Response:
   }
 }
 ```
+ 
 
-### 私有接口-查询历史订单
-
-```
-按用户输入进行查询操作
-限速规则：5次/2秒
-HTTP GET/api/usdt/v2/order/closedOrders
-```
-
-请求参数：
-
-名称  | 类型  | 是否必填  | 说明
----------|---------|---------|---------|
-beginTime      | string | 否 | 开始时间，毫秒级时间戳
-endTime      | string | 否 | 结束时间，毫秒级时间戳
-symbol      | string | 是 | 合约名称，如BTC-SWAP
-pageNum      | string | 否 | 页码，默认值 1
-pageSize      | string | 否 | 单页条数，默认值 10
-direction      | string | 否 | openLong=开多 openShort=开空
-orderType      | string | 否 | 订单类型
-
-
-返回字段说明：
-
-名称   | 类型  | 说明
----------|---------|---------|
-orderId   | string | 订单Id
-direction   | string | 方向
-leverage   | string | 杠杆倍数
-orderType   | string | 订单类型
-quantity   | string | 成交量（张）
-orderPrice   | string | 订单价格
-orderValue   | string | 订单价值
-fee   | string | 手续费
-filledQuantity   | string | 成交量（张）
-averagePrice   | string | 平均成交价格
-orderTime   | string | 订单创建时间
-status   | string | 订单状态(filled:完成成交,canceled:完全撤单,partiallyCanceled:部分撤单）
-
+### 私有接口-分页查询历史订单
 
 ```
-Request:
-Url: http://域名/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
-Method: GET
-Headers: 
-	Accept: application/json
-	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
-	ACCESS-SIGN: cA+ci0WdlF3fJMJlI+M4YtR2mYZSuBa+jgh+nPTe0AQ=
-	ACCESS-TIMESTAMP: 2019-05-22T04:03:41.607Z
-	Content-Type: application/json; charset=UTF-8
-	Cookie: locale=zh_CN
-Body: 
-preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
-
-Response:
-{
-  "code": 200, 
-  "data": [
-    {
-      "orderId": "580719990266232832", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "7", 
-      "orderPrice": "147.70", 
-      "orderValue": "0.0010", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:33:55.0Z", 
-      "status": "canceled"
-    }, 
-    {
-      "orderId": "580719596848906240", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "2", 
-      "orderPrice": "146.05", 
-      "orderValue": "0.0003", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:32:21.0Z", 
-      "status": "canceled"
-    }
-  ]
-}
-```
-
-### 私有接口-按订单id分页查询历史订单
-
-```
-按用户输入进行查询操作
-限速规则：5次/2秒
+按用户输入进行查询操作, 按订单时间查询返回
+限速规则：5次/1秒
 HTTP GET/api/usdt/v2/order/closedOrdersByPage
 ```
 
@@ -1191,10 +1008,7 @@ HTTP GET/api/usdt/v2/order/closedOrdersByPage
 名称  | 类型  | 是否必填  | 说明
 ---------|---------|---------|---------|
 beginTime      | string | 否 | 开始时间，毫秒级时间戳
-endTime      | string | 否 | 结束时间，毫秒级时间戳
 symbol      | string | 否 | 合约名称，如BTC-SWAP
-status   | string | 订单状态(filled:完成成交,canceled:完全撤单,partiallyCanceled:部分撤单）
-latestOrderId      | string | 否 | 订单id。默认为空，返回最新20条数据记录，规则：第一页传空值，从第二页开始传上一页列表orderId值-1
 
 
 返回字段说明：
@@ -1267,62 +1081,12 @@ Response:
 }
 ```
 
-### 私有接口-批量撤单
-
-```
-按用户输入进行撤单操作
-限速规则：5次/2秒
-HTTP POST/api/usdt/v2/order/batchCancel
-```
-请求参数：
-
-名称  | 类型  | 是否必填  | 说明
----------|---------|---------|---------|
-orderIds      | list<string> | 是 | 订单Id列表，每次最多10个订单id
-
-返回字段说明：
-
-名称   | 类型  | 说明
----------|---------|---------|
-orderId   | string | 撤销的订单Id
-
-
-```
-Request:
-Url: http://域名/api/usdt/v2/order/batchCancel
-Method: POST
-Headers: 
-	Accept: application/json
-	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
-	ACCESS-SIGN: h+b1jbtIlxBIqW3oZjM2xigZa+xGFdHqe7lkPTGqNck=
-	ACCESS-TIMESTAMP: 2019-05-22T04:10:50.176Z
-	Content-Type: application/json; charset=UTF-8
-	Cookie: locale=zh_CN
-Body: {"orderIds":["578639816552972288","578639902896914432"]}
-preHash: 2019-05-22T04:10:50.176ZPOST/api/usdt/v2/order/batchCancel{"orderIds":["578639816552972288","578639902896914432"]}
-
-Response:		
-{
-  "code": 200, 
-  "data": [
-    {
-      "orderId": "578639816552972288", 
-      "code": "200"
-    }, 
-    {
-      "orderId": "578639902896914432", 
-      "code": "10325", 
-      "message": "Order does not exist "
-    }
-  ]
-}
-```
 
 ### 私有接口-获取指定订单成交明细
 
 ```
 获取指定订单成交明细
-限速规则：10次/2秒
+限速规则：5次/1秒
 HTTP GET/api/usdt/v2/order/fills
 ```
 
@@ -1411,7 +1175,7 @@ Response:
 
 ```
 获取平台资金费率列表
-限速规则：10次/2秒
+限速规则：5次/1秒
 HTTP GET/api/usdt/v2/position/feeRate
 ```
 
