@@ -222,7 +222,7 @@ class TestUtil(unittest.TestCase):
 ### Public interface - Get orderBook
 ```
 Get a deep list of contracts
-Speed limit rule: 20 times per 2 seconds
+Speed limit rule: 10 times per 1 seconds
 HTTP GET /api/usdt/v2/market/orderBook?symbol=BTC-SWAP
 ```
 
@@ -323,7 +323,7 @@ Response:
 
 ```
 Get the latest transaction price, buy one price, sell one price and 24 trading volume of all the contracts of the platform.
-Speed limit rule: 20 times per 2 seconds
+Speed limit rule: 10 times per 1 seconds
 HTTP GET /api/usdt/v2/market/tickers
 ```
 Request parameters: none
@@ -393,7 +393,7 @@ Response:
 
 ```
 Obtain contract K line data. K-line data can be obtained up to 2000.
-Speed ​​limit rule: 20 times per 2 seconds
+Speed ​​limit rule: 10 times per 1 seconds
 HTTP GET /api/usdt/v2/market/klines
 ```
 Request parameters:
@@ -487,7 +487,7 @@ Format description:[time,open,high,low,close,volume,turnover,buyVolume,buyTurnov
 
 ```
 Get the latest filled orders information for the contract
-Speed limit rule: 20 times per 2 seconds
+Speed limit rule: 10 times per 1 seconds
 HTTP GET /api/usdt/v2/market/trades
 ```
 Request parameters:
@@ -544,7 +544,7 @@ Response:
 
 ```
 Get account information for user currency contracts
-Speed limit: 10 times per 2 seconds
+Speed limit: 5 times per 1 seconds
 HTTP GET /api/usdt/v2/account/info
 ```
 
@@ -595,7 +595,7 @@ Response:
 
 ```
 Get position information for all contracts
-Speed ​​limit rule: 10 times per 2 seconds
+Speed ​​limit rule: 5 times per 1 seconds
 HTTP GET /api/usdt/v2/position/list
 ```
 Request parameters:
@@ -686,7 +686,7 @@ Response:
 #### The single interface is not supported at present. Please pay attention to the following announcement
 ```
 Place an order,Trading only supports limit orders.
-Speed limit rule: 20 times per 2 seconds
+Speed limit rule: 5 times per 1 seconds
 HTTP POST/api/usdt/v2/order/place
 ```
 Request parameters:
@@ -746,7 +746,7 @@ Response:
 
 ```
 Cancelling an unfilled order
-Speed limit rule: 20 times per 2 seconds
+Speed limit rule: 5 times per 1 seconds
 HTTP POST/api/usdt/v2/order/cancel
 ```
 Request parameters:
@@ -781,105 +781,13 @@ Response:
   "data": "580719990266232832"
 }
 ```
-### Private Interface - Get  open orders 
+ 
 
-
-```
-Order list query by user request,
-Speed limit rule: 5 times per 2 seconds
-HTTP GET/api/usdt/v2/order/openOrders
-```
-Request parameters:
-
-Name | Type | Required | Description
----------|---------|---------|---------|
-symbol | string | no | contract name, such as BTC-SWAP
-pageNum | string | no | page number, default page 1
-pageSize | string | no | single page number, default 10
-
-
-```
-Description
-1. Maximum support for 50 orders at the same time
-2. Assume that a total of 50 orders have been placed, and these orders have not been filled. If the parameter pageNum=5, pageSize=10, the order within [41, 50] is returned.
-```
-
-
-Return field description:
-
-Name | Type | Description
----------|---------|---------|
-orderId | string | Order Id
-direction | string | direction
-leverage | string | leverage multiple
-orderType | string | order type
-quantity | string | Volume (number of sheets)
-orderPrice | string | order price
-orderValue | string | order value
-fee | string | handling fee
-fillQuantity | string | Volume (number of sheets)
-averagePrice | string | Average transaction price
-orderTime | string | order creation time
-status | string | Order Status(new,filled,canceled,partiallyCanceled）
-
-
-```
-Request:
-Url: http://domain/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
-Method: GET
-Headers: 
-	Accept: application/json
-	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
-	ACCESS-SIGN: U4pKbDuOXqOqbQiqbHLAptEjTSpG7UYUrsbKZclJ5dU=
-	ACCESS-TIMESTAMP: 2019-05-22T03:40:14.396Z
-	Content-Type: application/json; charset=UTF-8
-	Cookie: locale=zh_CN
-Body: 
-preHash: 2019-05-22T03:40:14.396ZGET/api/usdt/v2/order/openOrders?symbol=BTC-SWAP&pageNum=1&pageSize=3
-
-Response:
-{
-  "code": 200, 
-  "data": [
-    {
-      "orderId": "580721369818955776", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "7", 
-      "orderPrice": "146.30", 
-      "orderValue": "0.0010", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:39:24.0Z", 
-      "status": "new"
-    }, 
-    {
-      "orderId": "580721368082513920", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "6", 
-      "orderPrice": "145.90", 
-      "orderValue": "0.0009", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:39:23.0Z", 
-      "status": "new"
-    }
-  ]
-}
-```
-
-### Private Interface - Paging the current list of delegation orders by order ID 
+### Private Interface - Get current list of orders
 
 ```
 Order list query by user request,
-Speed limit rule: 5 times per 2 seconds
+Speed limit rule: 5 times per 1 seconds
 HTTP GET/api/usdt/v2/order/openOrdersByPage
 ```
 Request parameters:
@@ -964,7 +872,7 @@ Response:
 
 ```
 Get  order information by order_id
-Speed limit rule: 10 times per 2 seconds
+Speed limit rule: 5 times per 1 seconds
 HTTP GET/api/usdt/v2/order/info
 ```
 Request parameters:
@@ -1027,102 +935,13 @@ Response:
 }
 ```
 
-### Private Interface - Query History Order
+ 
+
+### Private Interface - Query historical orders
 
 ```
 Query by user input
-Speed ​​limit rule: 5 times per 2 seconds
-HTTP GET/api/usdt/v2/order/closedOrders
-```
-
-Request parameters:
-
-Name | Type | Required | Description
----------|---------|---------|---------|
-beginTime | string | no | start time, millisecond timestamp
-endTime | string | no | end time, millisecond timestamp
-symbol | string | yes | contract name, such as BTC-SWAP
-pageNum | string | no | page number, default value 1
-pageSize | string | no | single page number, default 10
-direction | string | no | openLong=open more openShort=open
-orderType | string | no | order type
-
-
-Return field description:
-
-Name | Type | Description
----------|---------|---------|
-orderId | string | Order Id
-direction | string | direction
-leverage | string | leverage multiple
-orderType | string | order type
-quantity | string | Volume (number of sheets)
-orderPrice | string | order price
-orderValue | string | order value
-fee | string | handling fee
-fillQuantity | string | Volume (number of sheets)
-averagePrice | string | Average transaction price
-orderTime | string | order creation time
-status | string | Order Status(filled,canceled,partiallyCanceled）
-
-
-```
-Request:
-Url: http://domain/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
-Method: GET
-Headers: 
-	Accept: application/json
-	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
-	ACCESS-SIGN: cA+ci0WdlF3fJMJlI+M4YtR2mYZSuBa+jgh+nPTe0AQ=
-	ACCESS-TIMESTAMP: 2019-05-22T04:03:41.607Z
-	Content-Type: application/json; charset=UTF-8
-	Cookie: locale=zh_CN
-Body: 
-preHash: 2019-05-22T04:03:41.607ZGET/api/usdt/v2/order/closedOrders?symbol=BTC-SWAP&pageNum=1&pageSize=10
-
-Response:
-{
-  "code": 200, 
-  "data": [
-    {
-      "orderId": "580719990266232832", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "7", 
-      "orderPrice": "147.70", 
-      "orderValue": "0.0010", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:33:55.0Z", 
-      "status": "canceled"
-    }, 
-    {
-      "orderId": "580719596848906240", 
-      "direction": "openLong", 
-      "leverage": "20", 
-      "symbol": "BTC-SWAP", 
-      "orderType": "limit", 
-      "quantity": "2", 
-      "orderPrice": "146.05", 
-      "orderValue": "0.0003", 
-      "fee": "0.0000", 
-      "filledQuantity": "0", 
-      "averagePrice": "0.00", 
-      "orderTime": "2019-05-22T03:32:21.0Z", 
-      "status": "canceled"
-    }
-  ]
-}
-```
-
-### Private Interface - Query historical orders by order ID Pagination
-
-```
-Query by user input
-Speed limit rule: 5 times per 2 seconds
+Speed limit rule: 5 times per 1 seconds
 HTTP GET/api/usdt/v2/order/closedOrdersByPage
 ```
 
@@ -1206,64 +1025,14 @@ Response:
   ]
 }
 ```
-
-### Private Interface - Cancel multiple Orders
-
-```
-Cancel multiple Orders
-Speed limit rule: 5 times per 2 seconds
-HTTP POST/api/usdt/v2/order/batchCancel
-```
-Request parameters:
-
-Name | Type | Required | Description
----------|---------|---------|---------|
-orderIds | list<string> | Yes | Order Id List，Up to 10 order ids at a time
-
-Return field description:
-
-Name | Type | Description
----------|---------|---------|
-orderId | string | Undo Order Id
-
-
-```
-Request:
-Url: http://domain/api/usdt/v2/order/batchCancel
-Method: POST
-Headers: 
-	Accept: application/json
-	ACCESS-KEY: E65791902180E9EF4510DB6A77F6EBAE
-	ACCESS-SIGN: h+b1jbtIlxBIqW3oZjM2xigZa+xGFdHqe7lkPTGqNck=
-	ACCESS-TIMESTAMP: 2019-05-22T04:10:50.176Z
-	Content-Type: application/json; charset=UTF-8
-	Cookie: locale=zh_CN
-Body: {"orderIds":["578639816552972288","578639902896914432"]}
-preHash: 2019-05-22T04:10:50.176ZPOST/api/usdt/v2/order/batchCancel{"orderIds":["578639816552972288","578639902896914432"]}
-
-Response:		
-{
-  "code": 200, 
-  "data": [
-    {
-      "orderId": "578639816552972288", 
-      "code": "200"
-    }, 
-    {
-      "orderId": "578639902896914432", 
-      "code": "10325", 
-      "message": "Order does not exist "
-    }
-  ]
-}
-```
+ 
 
 
 ### Private Interface - Get the specified order transaction details
 
 ```
 Get the specified order transaction details
-Speed limit rule: 10 times per 2 seconds
+Speed limit rule: 5 times per 1 seconds
 HTTP GET/api/usdt/v2/order/fills
 ```
 Request parameters:
@@ -1347,7 +1116,7 @@ Response:
 
 ```
 Get funding rate list info
-Speed limit rule: 10 times per 2 seconds
+Speed limit rule: 5 times per 1 seconds
 HTTP GET/api/usdt/v2/position/feeRate
 ```
 Request parameters:
