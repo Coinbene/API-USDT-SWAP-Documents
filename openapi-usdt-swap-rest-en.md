@@ -1,26 +1,16 @@
 # coinbene-usdt-rest-contract-openapi-rest-interface-description)
-[中文版本](https://github.com/Coinbene/API-USDT-SWAP-Documents/blob/master/openapi-usdt-swap-rest.md)
-
-  * [Basic Information](#basic-information)
+   * [coinbene-usdt-rest-contract-openapi-rest-interface-description)](#coinbene-usdt-rest-contract-openapi-rest-interface-description)
+      * [Basic Information](#basic-information)
       * [restriction of visit](#restriction-of-visit)
-         * [Interface Type](#interface-type)
-         * [Signature method](#signature-method)
-         * [Interface Specification](#interface-specification)
+      * [Interface Type](#interface-type)
+      * [Signature method](#signature-method)
+      * [Interface Specification](#interface-specification)
          * [Public interface - Get orderBook](#public-interface---get-orderbook)
          * [Public interface - Get all ticker information](#public-interface---get-all-ticker-information)
          * [Public interface - Get K line data](#public-interface---get-k-line-data)
          * [Public Interface - Get the latest filled orders](#public-interface---get-the-latest-filled-orders)
-         * [Private Interface - Query Contract Account Information](#private-interface---query-contract-account-information)
-         * [Private Interface - Get Position Information](#private-interface---get-position-information)
-         * [Private Interface - Place an Order](#private-interface---place-an-order)
-            * [The single interface is not supported at present. Please pay attention to the following announcement](#the-single-interface-is-not-supported-at-present-please-pay-attention-to-the-following-announcement)
-         * [Private Interface - Cancel an Order](#private-interface---cancel-an-order)
-         * [Private Interface - Get current list of orders](#private-interface---get-current-list-of-orders)
-         * [Private Interface - Get  order information](#private-interface---get--order-information)
-         * [Private Interface - Query historical orders](#private-interface---query-historical-orders)
-         * [Private Interface - Get the specified order transaction details](#private-interface---get-the-specified-order-transaction-details)
-         * [Private Interface - Get a list of funding rates](#private-interface---get-a-list-of-funding-rates)
-        * [Error Code Summary](#error-code-summary)
+      * [Error Code Summary](#error-code-summary)
+
  
 
 ## Basic Information
