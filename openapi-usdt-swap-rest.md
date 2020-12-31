@@ -1,20 +1,4 @@
 # coinbene-usdt-rest 合约openapi rest接口说明
-# [WebSocket](openapi-usdt-swap-websocket.md)
-
-* [coinbene-usdt-rest 合约openapi rest接口说明](#coinbene-usdt-rest-合约openapi-rest接口说明)
-     * [<a href="/Coinbene/API-USDT-SWAP-Documents/blob/master/openapi-usdt-swap-websocket.md">WebSocket</a>](#websocket)
-      * [基本信息](#基本信息)
-      * [访问限制](#访问限制)
-      * [接口类型](#接口类型)
-      * [签名方式](#签名方式)
-      * [接口规范](#接口规范)
-         * [公共接口-获取深度](#公共接口-获取深度)
-         * [公共接口-获取全部ticker信息](#公共接口-获取全部ticker信息)
-         * [公共接口-获取K线数据](#公共接口-获取k线数据)
-         * [公共接口-查询最新成交信息](#公共接口-查询最新成交信息)
-         * [公共接口-获取当前合约最新资金费率](#公共接口-获取当前合约最新资金费率)
-      * [错误代码汇总](#错误代码汇总)
-
 
  
 
