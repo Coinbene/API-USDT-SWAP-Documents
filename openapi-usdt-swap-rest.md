@@ -1,6 +1,6 @@
 # coinbene-usdt-rest 合约openapi rest接口说明
       
-      * [coinbene-usdt-rest 合约openapi rest接口说明](#coinbene-usdt-rest-合约openapi-rest接口说明)
+ * [coinbene-usdt-rest 合约openapi rest接口说明](#coinbene-usdt-rest-合约openapi-rest接口说明)
       * [基本信息](#基本信息)
       * [访问限制](#访问限制)
       * [接口类型](#接口类型)
